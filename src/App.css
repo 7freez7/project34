@@ -1,0 +1,70 @@
+@font-face {
+  font-family: NerkoOne;
+  src: url(../public/fonts/NerkoOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: Sour;
+  src: url(../public/fonts/SourGummy-VariableFont_wdth\,wght.ttf);
+}
+
+* {
+  font-family: "Sour";
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5 {
+
+  font-family: "Sour";
+  font-weight: 800;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 80px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 65px;
+}
+
+h3 {
+  font-size: 50px;
+}
+
+p {
+  font-size: 30px;
+}
+
+
+
+.HeaderImage img {
+  width: 100%;
+  height: 620px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+
+
+  
+}
+
+.HeaderImage h1{
+  padding: 15px;
+  position: absolute; /* Umožní umístit h2 přes obrázek */
+  top: 50%; /* Umístí h2 na střed obrázku vertikálně */
+  left: 50%; /* Umístí h2 na střed obrázku horizontálně */
+  transform: translate(-50%, -50%); /* Přesune h2 zpět o polovinu jeho šířky a výšky, aby bylo přesně ve středu */
+  text-align: center; /* Zarovná text na střed */
+  color: white; /* Změní barvu textu (pokud je obrázek tmavý, aby byl text čitelný) */
+  background: #000;
+  border-radius: 10px;
+  font-size: 300%;
+
+}
+
+.Description {
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+}
