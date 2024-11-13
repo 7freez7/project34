@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/https//7freez7.github.io/project34/static/css/main.cc10c967.css",
+    "main.js": "/https//7freez7.github.io/project34/static/js/main.337dd7ae.js",
+    "static/js/453.913d3177.chunk.js": "/https//7freez7.github.io/project34/static/js/453.913d3177.chunk.js",
+    "static/media/SourGummy-VariableFont_wdth,wght.ttf": "/https//7freez7.github.io/project34/static/media/SourGummy-VariableFont_wdth,wght.a1a8a759263dcbc35092.ttf",
+    "static/media/NerkoOne-Regular.ttf": "/https//7freez7.github.io/project34/static/media/NerkoOne-Regular.2e8be1a15ff9c6ac9177.ttf",
+    "index.html": "/https//7freez7.github.io/project34/index.html",
+    "main.cc10c967.css.map": "/https//7freez7.github.io/project34/static/css/main.cc10c967.css.map",
+    "main.337dd7ae.js.map": "/https//7freez7.github.io/project34/static/js/main.337dd7ae.js.map",
+    "453.913d3177.chunk.js.map": "/https//7freez7.github.io/project34/static/js/453.913d3177.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cc10c967.css",
+    "static/js/main.337dd7ae.js"
+  ]
+}
