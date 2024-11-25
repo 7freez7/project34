@@ -9,7 +9,7 @@ const Obory = () => {
     <div>
       <h1>Obory</h1>
 
-<div className="container">
+<div className="obor-container">
   <div className="obor-druh">
         <Link to="/obory/hudebni"> {""}
         <img src={`${process.env.PUBLIC_URL}/img/Hudba.jpg`} alt="Hudba" className="img" />

@@ -14,6 +14,16 @@
   font-style: normal;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+  }
+  
+  a:hover {
+    color: cyan;
+    text-decoration: underline;
+  }
+
 h1, h2, h3, h4, h5 {
 
   font-family: "Sour";
@@ -36,6 +46,10 @@ h3 {
 }
 
 p {
+  font-size: 30px;
+}
+
+a {
   font-size: 20px;
 }
 
@@ -68,7 +82,7 @@ p {
   text-align: center;
 }
 
-.container { /* Přidejte třídu pro rodičovský prvek */
+.obor-container { /* Přidejte třídu pro rodičovský prvek */
   display: flex;
   flex-wrap: wrap; /* Umožní kontejnerům se přizpůsobit */
   justify-content: space-between; /* Umožní prostor mezi kontejnery */
@@ -80,13 +94,18 @@ p {
   position: relative; /* Přidáno pro relativní umístění */
   text-align: center; /* Zarovná text na střed */
   padding-bottom: 2%;
-  background: #c2c2c2;
+  background: #e8e8e8;
   border-radius:25px ;
   overflow: hidden; /* Zajistí, že obrázek nepřečnívá */
 }
 
 .obor-druh p {
   padding: 10px;
+}
+
+.obor-druh a:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .obor-druh img {
@@ -104,12 +123,28 @@ p {
 }
 
 .obor-druh h2 {
-  color: white; /* Změní barvu textu pro lepší čitelnost */
-  padding: 10px; /* Přidá padding pro lepší vzhled */
+  color: black; /* Změní barvu textu pro lepší čitelnost */
+}
+
+
+.info-container, .info-container2{
+  background: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4%;
+  padding: 2%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Tmavý stín */
 
 }
 
-.obor-druh a {
-text-decoration: none;
-color: black;
+.info-container2 {
+  width: 50%;
+}
+
+#pouceni {
+  color: goldenrod;
+}
+
+ul li {
+font-size: 30px;
 }
