@@ -6,12 +6,12 @@
     background: linear-gradient(180deg, #222831 0%, white 100%);
     padding: 20px;
     display: flex;
-    align-items: center; /* Vertikální vycentrování obsahu */
+    align-items: center;
 }
 
 .Logo {
-    flex-shrink: 0; /* Logo zůstane své velikosti */
-    margin-right: 20px; /* Mezera mezi logem a odkazy */
+    flex-shrink: 0;
+    margin-right: 20px;
 }
 
 .Logo img {
@@ -26,9 +26,7 @@
     font-size: 20px;
     display: flex;
     justify-content: center;
-    flex-grow: 1; /* Zajistí, že tento kontejner zabere dostupný prostor */
-    display: flex;
-    justify-content: center; 
+    flex-grow: 1;
 }
 
 .currentLink a {
@@ -47,30 +45,38 @@ body {
     padding-top: 100px;
 }
 
+/* Styl pro dropdown */
 .dropdown {
     position: absolute;
+    top: 100%; /* Umístí dropdown přímo pod odkaz */
+    left: 50%; /* Posune dropdown na střed */
+    transform: translateX(-50%); /* Vycentruje dropdown horizontálně */
     background-color: white;
     border: 1px solid #ccc;
-    display: block; /* Můžete použít block nebo inline-block podle potřeby */
-    z-index: 1000; /* Ujistěte se, že dropdown bude nad ostatními prvky */
-  }
-  
-  .dropdown li {
-    list-style-type: none;
-  }
-  
-  .dropdown li a {
+    z-index: 1000; /* Ujistíme se, že dropdown je nad ostatními prvky */
+    width: max-content; /* Necháme šířku dropdownu přizpůsobit obsahu */
+    padding: 5px 0; /* Padding okolo obsahu dropdownu */
+}
+
+
+
+.dropdown li a {
     display: block; /* Zajistí, že odkaz zabere celou šířku */
-    padding: 8px 12px; /* Přidejte nějaké odsazení pro odkazy */
     color: #007BFF; /* Změňte barvu písma podle potřeby */
     text-decoration: none; /* Odstraní podtržení */
-  }
-  
-  .dropdown li a:hover {
+    text-align: center; /* Středování textu */
+}
+
+.dropdown li a:hover {
     text-decoration: underline; /* Přidá podtržení při najetí myší */
-  }
-  
-  .currentLink div {
-    position: relative; /* Aby dropdown byl správně umístěn */
-  }
-  
+}
+
+/* Nastavení pozice pro každý odkaz v currentLink */
+.currentLink > div {
+    position: relative; /* Aby dropdown byl správně umístěn vzhledem k rodiči */
+}
+
+/* Drobná optimalizace pro hoverování */
+.currentLink > div:hover .dropdown {
+    display: block; /* Zobrazí dropdown při najetí na rodičovský div */
+}

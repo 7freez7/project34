@@ -77,7 +77,7 @@ const Navbar = () => {
         <Link to="/about">About</Link>
         <Link to="/kontakt">KONTAKT</Link>
         <Link to="/documents">Dokumenty</Link>
-        
+
         <div 
           onMouseEnter={() => handleDropdownMouseEnter('chcinazus')} 
           onMouseLeave={handleDropdownMouseLeave}
