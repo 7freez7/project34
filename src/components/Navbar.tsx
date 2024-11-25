@@ -33,7 +33,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('uvod')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/uvod">Uvod</Link>
+          <Link to="/uvod">Uvod ▼</Link>
           {activeDropdown === 'uvod' && (
             <ul className="dropdown">
               <li><Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link></li>
@@ -49,7 +49,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('obory')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/obory">OBORY</Link>
+          <Link to="/obory">OBORY ▼</Link>
           {activeDropdown === 'obory' && (
             <ul className="dropdown">
               <li><Link to="/obory/hudebni">Hudební Obor</Link></li>
@@ -63,7 +63,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('galerie')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/galerie">Galerie</Link>
+          <Link to="/galerie">Galerie ▼</Link>
           {activeDropdown === 'galerie' && (
             <ul className="dropdown">
               <li><Link to="/galerie/foto">Fotky</Link></li>
@@ -82,7 +82,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('chcinazus')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-        <Link to="/chcinazus">CHCI NA ZUŠ</Link>
+        <Link to="/chcinazus">CHCI NA ZUŠ ▼</Link>
         {activeDropdown === 'chcinazus' && (
             <ul className="dropdown">
               <li><Link to="/chcinazus/prihlaska">Podání Přihlášky</Link></li>

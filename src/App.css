@@ -22,21 +22,21 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 80px;
+  font-size: 70px;
   text-align: center;
 }
 
 h2 {
   text-align: center;
-  font-size: 65px;
-}
-
-h3 {
   font-size: 50px;
 }
 
+h3 {
+  font-size: 40px;
+}
+
 p {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 
@@ -68,28 +68,48 @@ p {
   text-align: center;
 }
 
+.container { /* Přidejte třídu pro rodičovský prvek */
+  display: flex;
+  flex-wrap: wrap; /* Umožní kontejnerům se přizpůsobit */
+  justify-content: space-between; /* Umožní prostor mezi kontejnery */
+  
+}
 .obor-druh {
+  width: 31%; /* Můžete zmenšit šířku, aby se vešly lépe */
+  margin: 1%; /* Přidá mezery mezi kontejnery */
   position: relative; /* Přidáno pro relativní umístění */
   text-align: center; /* Zarovná text na střed */
-  padding-top: 5% ;
-  padding-bottom:5% ;
+  padding-bottom: 2%;
+  background: #c2c2c2;
+  border-radius:25px ;
+  overflow: hidden; /* Zajistí, že obrázek nepřečnívá */
+}
+
+.obor-druh p {
+  padding: 10px;
 }
 
 .obor-druh img {
   width: 100%;
-  height: 300px;
+  height: auto;
+  max-height: 300px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+  border-top-left-radius: 25px; 
+  border-top-right-radius: 25px; 
+  transition: transform 0.3s ease; /* Přidá plynulý přechod pro transformaci */
 
+}
+.obor-druh:hover img {
+  transform: scale(1.1); /* Zvětší obrázek o 10% při najetí myší */
 }
 
 .obor-druh h2 {
-  position: absolute; /* Umožní umístit h2 přes obrázek */
-  top: 37%; /* Umístí h2 na střed obrázku vertikálně */
-  left: 50%; /* Umístí h2 na střed obrázku horizontálně */
-  transform: translate(-50%, -50%); /* Přesune h2 zpět o polovinu jeho šířky a výšky, aby bylo přesně ve středu */
   color: white; /* Změní barvu textu pro lepší čitelnost */
-  background: black; /* Poloprůhledné pozadí pro lepší čitelnost textu */
-  border-radius: 10px;
   padding: 10px; /* Přidá padding pro lepší vzhled */
 
+}
+
+.obor-druh a {
+text-decoration: none;
+color: black;
 }
