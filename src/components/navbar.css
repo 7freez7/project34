@@ -24,11 +24,8 @@
     padding: 15px 40px;
     display: flex;
     justify-content: center;
-    font-size: 30px;
+    font-size: 20px;
     margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Přesné horizontální vycentrování */
 }
 
 .currentLink a {
