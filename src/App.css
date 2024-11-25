@@ -27,6 +27,7 @@ h1 {
 }
 
 h2 {
+  text-align: center;
   font-size: 65px;
 }
 
@@ -65,4 +66,30 @@ p {
   margin: 0 auto;
   width: 80%;
   text-align: center;
+}
+
+.obor-druh {
+  position: relative; /* Přidáno pro relativní umístění */
+  text-align: center; /* Zarovná text na střed */
+  padding-top: 5% ;
+  padding-bottom:5% ;
+}
+
+.obor-druh img {
+  width: 100%;
+  height: 300px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+
+}
+
+.obor-druh h2 {
+  position: absolute; /* Umožní umístit h2 přes obrázek */
+  top: 37%; /* Umístí h2 na střed obrázku vertikálně */
+  left: 50%; /* Umístí h2 na střed obrázku horizontálně */
+  transform: translate(-50%, -50%); /* Přesune h2 zpět o polovinu jeho šířky a výšky, aby bylo přesně ve středu */
+  color: white; /* Změní barvu textu pro lepší čitelnost */
+  background: black; /* Poloprůhledné pozadí pro lepší čitelnost textu */
+  border-radius: 10px;
+  padding: 10px; /* Přidá padding pro lepší vzhled */
+
 }

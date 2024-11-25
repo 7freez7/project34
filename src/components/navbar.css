@@ -7,6 +7,8 @@
     padding: 20px;
     display: flex;
     align-items: center;
+    z-index: 1000; /* Ujistěte se, že navbar je nad ostatními prvky */
+
 }
 
 .Logo {
