@@ -8,8 +8,15 @@
   src: url(../public/fonts/SourGummy-VariableFont_wdth\,wght.ttf);
 }
 
+@font-face {
+  font-family: 'Manrope';
+  src: url(../public/fonts/Manrope-VariableFont_wght.ttf);
+  font-style: normal;
+  font-weight: 600;
+}
+
 * {
-  font-family: "Sour";
+  font-family: "Manrope";
   font-weight: 400;
   font-style: normal;
 }
@@ -26,7 +33,7 @@ a {
 
 h1, h2, h3, h4, h5 {
 
-  font-family: "Sour";
+  font-family: "Manrope";
   font-weight: 800;
   font-style: normal;
 }

@@ -19,7 +19,6 @@ const Documents = () => {
         <a href="https://www.zushm.cz/files/skolni_rad/ZUSHM_Skolni_rad.pdf">Školní řád</a>
         <a href="https://www.zushm.cz/files/SVP_HM.pdf">Školní vzdělávací program (ŠVP)</a>
       </div>
-      <p>nevimmm</p>
     </div>
   );
 };
