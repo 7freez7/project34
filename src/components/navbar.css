@@ -46,3 +46,30 @@
 body {
     padding-top: 100px;
 }
+
+.dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: block; /* Můžete použít block nebo inline-block podle potřeby */
+    z-index: 1000; /* Ujistěte se, že dropdown bude nad ostatními prvky */
+  }
+  
+  .dropdown li {
+    list-style-type: none;
+  }
+  
+  .dropdown li a {
+    display: block; /* Zajistí, že odkaz zabere celou šířku */
+    padding: 8px 12px; /* Přidejte nějaké odsazení pro odkazy */
+    color: #007BFF; /* Změňte barvu písma podle potřeby */
+    text-decoration: none; /* Odstraní podtržení */
+  }
+  
+  .dropdown li a:hover {
+    text-decoration: underline; /* Přidá podtržení při najetí myší */
+  }
+  
+  .currentLink div {
+    position: relative; /* Aby dropdown byl správně umístěn */
+  }

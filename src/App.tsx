@@ -6,6 +6,10 @@ import Uvod from "./pages/Uvod";
 import Kontakt from "./pages/Kontakt";
 import Obory from "./pages/Obory";
 import Footer from "./components/Footer";
+
+import Galerie from "./pages/Galerie";
+import Documents from "./pages/Documents";
+import ChciNaZus from "./pages/Chcinazus";
 import {
   BrowserRouter as Router,
   Route,
@@ -23,6 +27,12 @@ function App() {
             <Route path="/about" element={<About />}></Route>
             <Route path="/kontakt" element={<Kontakt />} />
             <Route path="/obory" element={<Obory />} />
+            <Route path="/galerie" element={<Galerie />} />
+            <Route path="/documents" element={<Documents />} />
+            <Route path="/chcinazus" element={<ChciNaZus />} />
+
+
+
           </Routes>
         </main>
         <Footer />
