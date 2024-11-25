@@ -37,7 +37,7 @@ const Navbar = () => {
           {activeDropdown === 'uvod' && (
             <ul className="dropdown">
               <li><Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link></li>
-              <li><Link to="/uvod/zamestnanci">Zaměstnanci</Link></li>
+              <li><Link to="/uvod/teachers">Učitelé</Link></li>
               <li><Link to="/uvod/absolventi">Absolventi</Link></li>
               <li><Link to="/uvod/soucasnost">Současnost</Link></li>
               <li><Link to="/uvod/historie">Historie</Link></li>

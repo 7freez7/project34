@@ -28,6 +28,8 @@ import Historie from "./pages/uvod/Historie";
 import Pracoviste from "./pages/uvod/Pracoviste";
 import Soucasnost from "./pages/uvod/Soucasnost";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
+import TeachersList from "./data/TeachersList";
+
 
 
 
@@ -69,7 +71,7 @@ function App() {
             <Route path="/uvod/historie" element={<Historie />} />
             <Route path="/uvod/pracoviste" element={<Pracoviste />} />
             <Route path="/uvod/soucasnost" element={<Soucasnost />} />
-            <Route path="/uvod/zamestnanci" element={<Zamestnanci />} />
+            <Route path="/uvod/teachers" element={<TeachersList />} />
 
 
           </Routes>
