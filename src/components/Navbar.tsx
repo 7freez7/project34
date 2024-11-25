@@ -72,10 +72,26 @@ const Navbar = () => {
           )}
         </div>
 
+
+
         <Link to="/about">About</Link>
         <Link to="/kontakt">KONTAKT</Link>
         <Link to="/documents">Dokumenty</Link>
+        
+        <div 
+          onMouseEnter={() => handleDropdownMouseEnter('chcinazus')} 
+          onMouseLeave={handleDropdownMouseLeave}
+        >
         <Link to="/chcinazus">CHCI NA ZUŠ</Link>
+        {activeDropdown === 'chcinazus' && (
+            <ul className="dropdown">
+              <li><Link to="/chcinazus/prihlaska">Podání Přihlášky</Link></li>
+              <li><Link to="/chcinazus/prijimacizkouzky">Příjimací zkoušky</Link></li>
+              <li><Link to="/chcinazus/priprava">Příprava</Link></li>
+
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

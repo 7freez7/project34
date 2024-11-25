@@ -1,12 +1,12 @@
 import React from "react";
-import VHS from "../../public/img/Radio.jpg";
+import ZusHM from "../../public/img/ZusHM.png";
 
 const Uvod = () => {
   return (
     <div>
       <div className="HeaderImage">
         <h1>Zuš Heřmanův Městec</h1>
-        <img src={`${process.env.PUBLIC_URL}/img/Radio.jpg`} alt="VHS" />
+        <img src={`${process.env.PUBLIC_URL}/img/ZusHM.png`} alt="ZusHM" />
       </div>
 
       <div className="Description">
