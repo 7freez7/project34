@@ -6,7 +6,7 @@ const About = () => {
       <h1>O nás</h1>
       <div className="HeaderImage">
         <h2>Nevim visco</h2>
-        <img src={"/img/otaznik.png"} alt="otaznik" />
+        <img src={`${process.env.PUBLIC_URL}/img/otaznik.png`} alt="otaznik" />
       </div>
     </div>
   );

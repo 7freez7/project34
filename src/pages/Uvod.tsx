@@ -6,7 +6,7 @@ const Uvod = () => {
     <div>
       <div className="HeaderImage">
         <h1>Zuš Heřmanův Městec</h1>
-        <img src={"/img/Radio.jpg"} alt="VHS" />
+        <img src={`${process.env.PUBLIC_URL}/img/Radio.jpg`} alt="VHS" />
       </div>
 
       <div className="Description">
@@ -20,6 +20,7 @@ const Uvod = () => {
           čtyřech pobočkách: v Prachovicích, Třemošnici, Ronově nad Doubravou a
           Seči.
         </p>
+        <p></p>
       </div>
     </div>
   );
