@@ -58,10 +58,14 @@ body {
     padding: 5px 0; /* Padding okolo obsahu dropdownu */
 }
 
-
+.dropdown li {
+    list-style-type: none;
+    text-align: center; /* Vycentruje text v každém odkazu */
+}
 
 .dropdown li a {
     display: block; /* Zajistí, že odkaz zabere celou šířku */
+    padding: 12px; /* Přidejte nějaké odsazení pro odkazy */
     color: #007BFF; /* Změňte barvu písma podle potřeby */
     text-decoration: none; /* Odstraní podtržení */
     text-align: center; /* Středování textu */
