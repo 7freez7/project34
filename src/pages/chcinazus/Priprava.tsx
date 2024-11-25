@@ -1,12 +1,12 @@
 import React from "react";
 
-const Galerie = () => {
+const Priprava = () => {
   return (
     <div>
-      <h1>Galerie</h1>
+      <h1>Priprava</h1>
       <p>nevimmm</p>
     </div>
   );
 };
 
-export default Galerie;
+export default Priprava;

@@ -1,12 +1,12 @@
 import React from "react";
 
-const Galerie = () => {
+const Historie = () => {
   return (
     <div>
-      <h1>Galerie</h1>
+      <h1>Historie skoly</h1>
       <p>nevimmm</p>
     </div>
   );
 };
 
-export default Galerie;
+export default Historie;

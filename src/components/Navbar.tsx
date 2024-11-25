@@ -4,34 +4,21 @@ import { Link } from "react-router-dom";
 import img from "../../public/img/logo1-tr.png";
 
 const Navbar = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [dropdownHover, setDropdownHover] = useState(false);
-  let closeTimeout: NodeJS.Timeout | null = null;
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
-  const toggleDropdown = (open: boolean) => {
-    if (open) {
-      if (closeTimeout) {
-        clearTimeout(closeTimeout); // Zrušíme zavírací timeout, pokud uživatel znovu najel na dropdown
-        closeTimeout = null;
-      }
-      setDropdownOpen(true);
-    } else if (!dropdownHover) {
-      // Nastavíme timeout pro zavření
-      closeTimeout = setTimeout(() => {
-        setDropdownOpen(false);
-        closeTimeout = null;
-      }, 500); // Půl vteřiny
+  const handleDropdownMouseEnter = (dropdown: string) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
-  };
-
-  const handleDropdownMouseEnter = () => {
-    setDropdownHover(true);
-    toggleDropdown(true);
+    setActiveDropdown(dropdown);
   };
 
   const handleDropdownMouseLeave = () => {
-    setDropdownHover(false);
-    toggleDropdown(false);
+    const id = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200); // Zpoždění 200 ms
+    setTimeoutId(id);
   };
 
   return (
@@ -42,32 +29,53 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="currentLink">
-        <Link to="/uvod">ÚVOD</Link>
-
         <div 
-          onMouseEnter={handleDropdownMouseEnter} 
+          onMouseEnter={() => handleDropdownMouseEnter('uvod')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/about">O nás</Link>
-          {dropdownOpen && (
-            <ul 
-              className="dropdown"
-              onMouseEnter={handleDropdownMouseEnter}
-              onMouseLeave={handleDropdownMouseLeave}
-            >
-              <li><Link to="/obory">Obory</Link></li>
-              <li><Link to="/galerie">Galerie</Link></li>
-              <li><Link to="/documents">Dokumenty</Link></li>
-              <li><Link to="/chcinazus">Chci na ZUŠ</Link></li>
+          <Link to="/uvod">Uvod</Link>
+          {activeDropdown === 'uvod' && (
+            <ul className="dropdown">
+              <li><Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link></li>
+              <li><Link to="/uvod/zamestnanci">Zaměstnanci</Link></li>
+              <li><Link to="/uvod/absolventi">Absolventi</Link></li>
+              <li><Link to="/uvod/soucasnost">Současnost</Link></li>
+              <li><Link to="/uvod/historie">Historie</Link></li>
             </ul>
           )}
         </div>
 
-        <Link to="/obory">OBORY</Link>
-        <Link to="/galerie">Galerie</Link>
+        <div 
+          onMouseEnter={() => handleDropdownMouseEnter('obory')} 
+          onMouseLeave={handleDropdownMouseLeave}
+        >
+          <Link to="/obory">OBORY</Link>
+          {activeDropdown === 'obory' && (
+            <ul className="dropdown">
+              <li><Link to="/obory/hudebni">Hudební Obor</Link></li>
+              <li><Link to="/obory/tanecni">Taneční Obor</Link></li>
+              <li><Link to="/obory/vytvarni">Výtvarní Obor</Link></li>
+            </ul>
+          )}
+        </div>
+
+        <div 
+          onMouseEnter={() => handleDropdownMouseEnter('galerie')} 
+          onMouseLeave={handleDropdownMouseLeave}
+        >
+          <Link to="/galerie">Galerie</Link>
+          {activeDropdown === 'galerie' && (
+            <ul className="dropdown">
+              <li><Link to="/galerie/foto">Fotky</Link></li>
+              <li><Link to="/galerie/video">Videa</Link></li>
+            </ul>
+          )}
+        </div>
+
+        <Link to="/about">About</Link>
+        <Link to="/kontakt">KONTAKT</Link>
         <Link to="/documents">Dokumenty</Link>
         <Link to="/chcinazus">CHCI NA ZUŠ</Link>
-        <Link to="/kontakt">KONTAKT</Link>
       </div>
     </div>
   );

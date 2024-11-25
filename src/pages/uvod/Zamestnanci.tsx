@@ -1,12 +1,12 @@
 import React from "react";
 
-const Galerie = () => {
+const Zamestnanci = () => {
   return (
     <div>
-      <h1>Galerie</h1>
+      <h1>Zamestnanci</h1>
       <p>nevimmm</p>
     </div>
   );
 };
 
-export default Galerie;
+export default Zamestnanci;
