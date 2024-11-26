@@ -39,18 +39,17 @@
     text-align: left;
     padding-left: 0;
     padding-bottom: 5px;
-    font-size: 25px;
     margin: 3px;
 
   }
 
-    .footer-right p, .footer-right h3 {
+  .footer-right p, .footer-right h3 {
     color: #f0f0f0;
   }
 
   .map-container {
     width: 100%;
-    height: 300px;
+    height: 250px;
   }
 
   .map-container iframe {

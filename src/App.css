@@ -39,65 +39,98 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 70px;
+  font-size: 50px;
   text-align: center;
 }
 
 h2 {
   text-align: center;
-  font-size: 50px;
-}
-
-h3 {
   font-size: 40px;
 }
 
-p {
+h3 {
   font-size: 30px;
 }
 
-a {
+p {
   font-size: 20px;
 }
 
+a {
+  font-size: 15px;
+}
 
 
-.HeaderImage img {
+.headerImage {
+  position: relative;
+  text-align: center;
+  height: 620px; /* Nastavte výšku podle potřeby */
+  overflow: hidden; /* Center text horizontally */
+}
+
+.headerImage img {
   width: 100%;
-  height: 620px;
+  height: auto;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+  filter: brightness(100%);
   
 }
 
-.HeaderImage h1{
-  padding: 15px;
-  position: absolute; /* Umožní umístit h2 přes obrázek */
-  top: 50%; /* Umístí h2 na střed obrázku vertikálně */
-  left: 50%; /* Umístí h2 na střed obrázku horizontálně */
-  transform: translate(-50%, -50%); /* Přesune h2 zpět o polovinu jeho šířky a výšky, aby bylo přesně ve středu */
-  text-align: center; /* Zarovná text na střed */
-  color: white; /* Změní barvu textu (pokud je obrázek tmavý, aby byl text čitelný) */
-  background: grey;
-  border-radius: 10px;
-  font-size: 300%;
+.oborImage img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+  filter: brightness(33%);
+  position: relative; /* Přidáno pro správný z-index */
+  z-index: 1;
+  
+}
 
+.oborImage {
+    position: relative;
+    text-align: center;
+    height: 300px; /* Nastavte výšku podle potřeby */
+    overflow: hidden; /* Center text horizontally */
+    margin-bottom: 4%;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+    background: #e8e8e8; /* Ujistěte se, že pozadí je odlišné od barvy textu */
+    display: flex; /* Přidáno pro flexbox */
+    align-items: center; /* Vertikální centrování */
+    justify-content: center; /* Horizontální centrování */
+}
+
+.oborImage h1 {
+  position: absolute; /* Umožní umístit h1 nad obrázek */
+  top: 50%; /* Vertikální centrování */
+  left: 50%; /* Horizontální centrování */
+  transform: translate(-50%, -50%); /* Centrovat h1 */
+  color: white; /* Změna barvy textu pro lepší viditelnost */
+  z-index: 2; /* Ujistěte se, že je větší než z-index obrázku */
+  
 }
 
 .Description {
   margin: 0 auto;
   width: 80%;
   text-align: center;
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the element's own width and height */
+  color: white; /* Change text color for better visibility */
+  background-color: rgba(30, 30, 30, 0.822); /* Optional: Add a background for better contrast */
+  padding: 10px; /* Optional: Add some padding */
+  border-radius: 5px;
 }
 
 .obor-container { /* Přidejte třídu pro rodičovský prvek */
   display: flex;
   flex-wrap: wrap; /* Umožní kontejnerům se přizpůsobit */
   justify-content: space-between; /* Umožní prostor mezi kontejnery */
-  
+  padding: 2%;
 }
 .obor-druh {
-  width: 31%; /* Můžete zmenšit šířku, aby se vešly lépe */
-  margin: 1%; /* Přidá mezery mezi kontejnery */
+  width: 30%; /* Můžete zmenšit šířku, aby se vešly lépe */
   position: relative; /* Přidáno pro relativní umístění */
   text-align: center; /* Zarovná text na střed */
   padding-bottom: 2%;
@@ -145,7 +178,6 @@ a {
 }
 
 .info-container2 {
-  width: 50%;
 }
 
 #pouceni {

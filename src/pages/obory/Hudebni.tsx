@@ -1,9 +1,13 @@
 import React from "react";
+import Hudba from "../../public/img/Hudba.jpg";
 
 const Hudebni = () => {
   return (
     <div>
-      <h1>Hudebni obor</h1>
+      <div className="oborImage">
+        <img src={`${process.env.PUBLIC_URL}/img/Hudba.jpg`} alt="Hudba" className="img" />
+        <h1>Hudebni obor</h1>
+      </div>
       <div className="info-container2">
       <p>Náš hudební obor nabízí rozmanitou škálu hudebních nástrojů, se kterými tě naučíme zacházet.</p>
       <p>K výběru máme tyto nástroje:</p>
