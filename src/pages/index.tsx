@@ -1,15 +1,21 @@
 import React from "react";
-import ZusHM from "../../public/img/artt.jpg";
+import ZusHM from "../../public/assets/img/artt.jpg";
 import { Link } from 'react-router-dom'; // Import Link pro navigaci
-import Art from "../../public/img/Art.jpg";
-import Dance from "../../public/img/Dance.jpg";
-import Hudba from "../../public/img/Hudba.jpg";
+import Art from "../../public/assets/img/Art.jpg";
+import Dance from "../../public/assets/img/Dance.jpg";
+import Hudba from "../../public/assets/img/Hudba.jpg";
+
+import hudbaIco from "../../public/assets/icons/music.svg";
+import balletIco from "../../public/assets/icons/ballet.svg";
+import palleteIco from "../../public/assets/icons/artpallete.svg";
+
+
 
 const Uvod = () => {
   return (
   <div>
     <div className="headerImage">
-      <img src={`${process.env.PUBLIC_URL}/img/artt.jpg`} alt="mainImg" />
+      <img src={`${process.env.PUBLIC_URL}/assets/img/artt.jpg`} alt="mainImg" />
       <div className="Description">
         <h1>Vítejte na stránkách ZUŠ Heřmanův Městec</h1>
         <p>
@@ -28,7 +34,7 @@ const Uvod = () => {
     <div className="obor-container">
       <div className="obor-druh">
           <Link to="/obory/hudebni"> {""}
-          <img src={`${process.env.PUBLIC_URL}/img/Hudba.jpg`} alt="Hudba" className="img" />
+          <img src={`${process.env.PUBLIC_URL}/assets/icons/music.svg`} alt="Hudba" className="img" />
             <h2>Hudební obor</h2>
             <p>Žáci v hudebním oboru poznávají hudbu mnoha žánrů. Samotný obor nabízí zaměření i na zpěv.</p>
           </Link>
@@ -36,7 +42,7 @@ const Uvod = () => {
 
       <div className="obor-druh">
       <Link to="/obory/tanecni"> {""}
-      <img src={`${process.env.PUBLIC_URL}/img/Dance.jpg`} alt="Dance" className="img" />
+      <img src={`${process.env.PUBLIC_URL}/assets/icons/ballet.svg`} alt="Dance" className="img" />
         <h2>Taneční Obor</h2>
         <p>Žácí ve výtvarném oboru nachází svůj motivační podnět k uměleckému vztahu ke světu a k sebe sama v něm.</p>
         </Link>
@@ -44,7 +50,7 @@ const Uvod = () => {
 
       <div className="obor-druh">
       <Link to="/obory/vytvarni"> {""}
-      <img src={`${process.env.PUBLIC_URL}/img/Art.jpg`} alt="Art" className="img" />
+      <img src={`${process.env.PUBLIC_URL}/assets/icons/artpallete.svg`} alt="Art" className="img" />
         <h2>Výtvarný Obor</h2>
         <p>Žáci v tanečním oboru rozvíjí své prostorové, hudební a taneční cítění.</p>
         </Link>

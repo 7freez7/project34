@@ -3,7 +3,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-import Uvod from "./pages";
+import Uvod from "./pages/index";
 import Kontakt from "./pages/Kontakt";
 import Obory from "./pages/Obory";
 import Footer from "./components/Footer";
@@ -46,7 +46,7 @@ function App() {
         <Navbar />
         <main>
           <Routes>
-            <Route path="/uvod" element={<Uvod />} />
+            <Route path="/" element={<Uvod />} />
             <Route path="/about" element={<About />}></Route>
             <Route path="/kontakt" element={<Kontakt />} />
             <Route path="/obory" element={<Obory />} />

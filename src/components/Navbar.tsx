@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import img from "../../public/img/logo1-tr.png";
+import img from "../../public/assets/img/logo1-tr.png";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -24,8 +24,8 @@ const Navbar = () => {
   return (
     <div className="Link">
       <div className="Logo">
-        <Link to="/uvod">
-          <img src={`${process.env.PUBLIC_URL}/img/logo1-tr.png`} alt="logo" />
+        <Link to="/">
+          <img src={`${process.env.PUBLIC_URL}/assets/img/logo1-tr.png`} alt="logo" />
         </Link>
       </div>
       <div className="currentLink">
@@ -33,7 +33,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('uvod')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/uvod">Uvod ▼</Link>
+          <Link to="/">Uvod ▼</Link>
           {activeDropdown === 'uvod' && (
             <ul className="dropdown">
               <li><Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link></li>
@@ -49,7 +49,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('obory')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/obory">OBORY ▼</Link>
+          <Link to="">OBORY ▼</Link>
           {activeDropdown === 'obory' && (
             <ul className="dropdown">
               <li><Link to="/obory/hudebni">Hudební Obor</Link></li>

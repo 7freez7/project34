@@ -1,11 +1,11 @@
 import React from "react";
-import Hudba from "../../public/img/Hudba.jpg";
+import Hudba from "../../public/assets/img/Hudba.jpg";
 
 const Hudebni = () => {
   return (
     <div>
       <div className="oborImage">
-        <img src={`${process.env.PUBLIC_URL}/img/Hudba.jpg`} alt="Hudba" className="img" />
+        <img src={`${process.env.PUBLIC_URL}/assets/img/Hudba.jpg`} alt="Hudba" className="img" />
         <h1>Hudebni obor</h1>
       </div>
       <div className="info-container2">
