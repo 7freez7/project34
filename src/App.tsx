@@ -3,7 +3,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-import Uvod from "./pages/Uvod";
+import Uvod from "./pages";
 import Kontakt from "./pages/Kontakt";
 import Obory from "./pages/Obory";
 import Footer from "./components/Footer";
