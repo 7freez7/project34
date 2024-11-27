@@ -1,19 +1,48 @@
-body{
-    
+.teachers-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }
 
-.teachers-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .teacher-card {
-    width: 20%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 12px;
-    margin: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: left;
-  }
+.teacher-card {
+  width: 20%; /* Nastavte šířku podle potřeby */
+  border: 1px solid rgb(0, 0, 0); /* Původní barva okraje */
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px;
+  text-align: left;
+  transition: border-color 0.3s ease, transform 0.3s ease; /* Přidání přechodu pro hladký efekt */
+}
+
+/* Modrá barva okraje pro učitele hudebního oboru */
+.teacher-card.učitel-hudebního-oboru:hover {
+  border-color: rgba(0, 0, 255, 1); /* Konečná barva okraje */
+  transform: scale(1.05); /* Zvětšení karty při najetí */
+}
+
+/* Zelená barva okraje pro učitele výtvarného oboru */
+.teacher-card.učitel-výtvarného-oboru:hover {
+  border-color: rgba(0, 255, 0, 1); /* Konečná barva okraje */
+  transform: scale(1.05); /* Zvětšení karty při najetí */
+}
+
+/* Červená barva okraje pro učitele tanečního oboru */
+.teacher-card.učitel-tanečního-oboru:hover {
+  border-color: rgba(255, 0, 0, 1); /* Konečná barva okraje */
+  transform: scale(1.05); /* Zvětšení karty při najetí */
+}
+
+/* Předchozí stav s nulovou sytostí */
+.teacher-card.učitel-hudebního-oboru {
+  border-color: rgba(0, 0, 255, 0); /* Počáteční transparentní barva */
+}
+
+.teacher-card.učitel-výtvarného-oboru {
+  border-color: rgba(0, 255, 0, 0); /* Počáteční transparentní barva */
+}
+
+.teacher-card.učitel-tanečního-oboru {
+  border-color: rgba(255, 0, 0, 0); /* Počáteční transparentní barva */
+}

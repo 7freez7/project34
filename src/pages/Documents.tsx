@@ -5,7 +5,7 @@ const Documents = () => {
     <div>
       <h1>Dokumenty</h1>
 
-      <div className="info-container">
+      <div className="info-container2">
         <h2>Formulář ke stažení</h2>
         <div id="pouceni"><p>Formuláře pro školní rok 2024/2025</p></div>
 
@@ -16,7 +16,7 @@ const Documents = () => {
         </ul>
       </div>
 
-      <div className="info-container">
+      <div className="info-container2">
         <h2>Platné předpisy</h2>
         <ul>
           <li><a href="https://www.zushm.cz/files/skolni_rad/ZUSHM_Skolni_rad.pdf">Školní řád</a></li>

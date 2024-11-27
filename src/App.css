@@ -71,9 +71,8 @@ a {
 .headerImage img {
   width: 100%;
   height: auto;
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
   filter: brightness(100%);
-  
+
 }
 
 .oborImage img {
@@ -190,3 +189,4 @@ a {
 ul li {
 font-size: 30px;
 }
+

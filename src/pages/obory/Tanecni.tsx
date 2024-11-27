@@ -1,7 +1,10 @@
 import React from "react";
 import img from "../../../public/assets/img/dancee.jpg";
+import teachers from "../../data/teachers";
+
 
 const Tanecni = () => {
+  const danceTeachers = teachers.filter(teacher => teacher.role === "Učitel tanečního oboru");
   return (
     <div>
       <div className="oborImage">
@@ -31,7 +34,22 @@ const Tanecni = () => {
           <p>Přihlásit se mohou děti od 5 let do přípravného studia a děti od 7 let do základního studia. Výuka je kolektivní. 
             Žáci mohou vystupovat na akcích školy, jiných akcích a účastnit se soutěží.</p>
       </div>
+
+      <div className="teachers-list" style={{marginBottom: "3%", padding: "0"}}>
+        {danceTeachers.map((teacher, index) => (
+          <div className="teacher-card" key={index}>
+            <h2>{teacher.name}</h2>
+            <p>Pozice: {teacher.role}</p>
+            {teacher.status && <p>Status: {teacher.status}</p>}
+            {teacher.subjects && teacher.subjects.length > 0 ? (
+              <p>Obory: {teacher.subjects.join(", ")}</p>
+            ) : null}
+          <p>Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a></p></div>
+        ))}
+      </div>
+
     </div>
+
   );
 };
 
