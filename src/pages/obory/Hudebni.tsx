@@ -8,7 +8,7 @@ const Hudebni = () => {
         <img src={`${process.env.PUBLIC_URL}/assets/img/Hudba.jpg`} alt="Hudba" className="img" />
         <h1>Hudebni obor</h1>
       </div>
-      <div className="info-container2">
+      <div className="info-container">
       <p>Náš hudební obor nabízí rozmanitou škálu hudebních nástrojů, se kterými tě naučíme zacházet.</p>
       <p>K výběru máme tyto nástroje:</p>
       <ul>
