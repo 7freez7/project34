@@ -50,6 +50,7 @@ h2 {
 
 h3 {
   font-size: 30px;
+  text-align: center;
 }
 
 p {
@@ -187,6 +188,5 @@ a {
 }
 
 ul li {
-font-size: 30px;
+font-size: 20px;
 }
-

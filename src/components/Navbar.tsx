@@ -49,7 +49,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('obory')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="">OBORY ▼</Link>
+          <Link to="#">OBORY ▼</Link>
           {activeDropdown === 'obory' && (
             <ul className="dropdown">
               <li><Link to="/obory/hudebni">Hudební Obor</Link></li>
