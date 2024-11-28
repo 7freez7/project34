@@ -12,15 +12,16 @@ const Vytvarni = () => {
       <h2>O výtvarném oboru</h2>
 
       <div className="info-container">
-      <p>Žáci ve výtvarné činnosti rozvíjí celou paletu svých dovedností a schopností, jako je tvořivost a fantazie, 
+
+        <p>Žáci ve výtvarné činnosti rozvíjí celou paletu svých dovedností a schopností, jako je tvořivost a fantazie, 
         mnohostranné smyslové vnímání a rozlišování, výrázová spontálnost nebo představivost aj.</p>
+
         <p>Každá taková to dovednost nebo schopnost je součástí obecného celku zkoumat a poznávat svět a sebe sama v něm. 
           Výtvarnou činností chceme žákům přinést motivační podnět k uměleckému i k 
           vědecko - filosofickému vztahu ke světu a k sebe sama v něm.</p>
-          <p>Výtvarný obor rozdělujeme na dvě oblasti. Na <span style={{ textDecoration: "underline"}}>výtvarnou tvorbu</span> a <span style={{ textDecoration: "underline"}}>keramiku</span>.</p>      
-          
-          
-        </div>
+
+        <p>Výtvarný obor rozdělujeme na dvě oblasti. Na <span style={{ textDecoration: "underline"}}>výtvarnou tvorbu</span> a <span style={{ textDecoration: "underline"}}>keramiku</span>.</p>
+      </div>
 
 
         <div className="info-container">
