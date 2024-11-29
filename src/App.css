@@ -107,7 +107,6 @@ a {
   transform: translate(-50%, -50%); /* Centrovat h1 */
   color: white; /* Změna barvy textu pro lepší viditelnost */
   z-index: 2; /* Ujistěte se, že je větší než z-index obrázku */
-  
 }
 
 .Description {
