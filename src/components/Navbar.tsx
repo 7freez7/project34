@@ -74,9 +74,10 @@ const Navbar = () => {
 
 
 
-        <Link to="/about">About</Link>
         <Link to="/kontakt">KONTAKT</Link>
         <Link to="/documents">Dokumenty</Link>
+        <Link to="/aktuality">aktuality</Link>
+
 
         <div 
           onMouseEnter={() => handleDropdownMouseEnter('chcinazus')} 

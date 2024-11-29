@@ -4,38 +4,49 @@
     left: 0;
     width: 100%;
     background: linear-gradient(180deg, #222831 0%, white 100%);
-    padding: 20px;
+    padding: 20px 0; /* Vertikální padding */
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertikální zarovnání */
+    justify-content: center; /* Navigace na střed */
     z-index: 1000; /* Ujistěte se, že navbar je nad ostatními prvky */
-
 }
 
 .Logo {
-    flex-shrink: 0;
-    margin-right: 20px;
+    position: absolute; /* Logo umístěno nezávisle na ostatních prvcích */
+    top: 50%; /* Vertikální zarovnání */
+    left: 20px; /* Odsazení od levého kraje */
+    transform: translateY(-50%); /* Vycentrování vertikálně */
 }
 
 .Logo img {
-    height: 55px;
+    height: 55px; /* Velikost obrázku */
     padding: 0;
 }
 
 .currentLink {
     background-color: #393E46;
     border-radius: 50px;
-    padding: 15px 40px;
+    padding: 15px 20px;
     font-size: 20px;
     display: flex;
-    justify-content: center;
-    flex-grow: 1;
+    align-items: center;
+    justify-content: space-around; /* Rovnoměrné rozložení odkazů */
+    max-width: 70%; /* Omezí šířku panelu na 70% stránky */
+    width: 100%; /* Panel se přizpůsobí dostupné šířce */
+}
+
+.currentLink div {
+    position: relative; /* Pro správné umístění dropdownu */
+    margin: 0 10px; /* Odsazení mezi odkazy */
 }
 
 .currentLink a {
-    margin: 0 30px;
+    margin: 0 15px;
     text-decoration: none;
     color: #EEEEEE;
     transition: transform 0.2s ease;
+    display: flex; /* Flexbox pro vycentrování textu */
+    align-items: center; /* Vertikální vycentrování */
 }
 
 .currentLink a:hover {
@@ -50,39 +61,37 @@ body {
 /* Styl pro dropdown */
 .dropdown {
     position: absolute;
-    top: 100%; /* Umístí dropdown přímo pod odkaz */
-    left: 50%; /* Posune dropdown na střed */
-    transform: translateX(-50%); /* Vycentruje dropdown horizontálně */
+    top: 100%; /* Dropdown umístěn pod hlavním odkazem */
+    left: 50%; /* Vycentrování dropdownu */
+    transform: translateX(-50%); /* Perfektní vycentrování */
     background-color: white;
     border: 1px solid #ccc;
-    z-index: 1000; /* Ujistíme se, že dropdown je nad ostatními prvky */
-    width: max-content; /* Necháme šířku dropdownu přizpůsobit obsahu */
-    padding: 5px 0; /* Padding okolo obsahu dropdownu */
+    z-index: 1000;
+    width: max-content; /* Přizpůsobí šířku obsahu */
+    padding: 5px 0;
 }
 
 .dropdown li {
     list-style-type: none;
-    text-align: center; /* Vycentruje text v každém odkazu */
+    text-align: center;
 }
 
 .dropdown li a {
-    display: block; /* Zajistí, že odkaz zabere celou šířku */
-    padding: 12px; /* Přidejte nějaké odsazení pro odkazy */
-    color: #007BFF; /* Změňte barvu písma podle potřeby */
-    text-decoration: none; /* Odstraní podtržení */
-    text-align: center; /* Středování textu */
+    display: block; /* Celá šířka klikací */
+    padding: 12px;
+    color: #007BFF;
+    text-decoration: none;
+    text-align: center;
 }
 
 .dropdown li a:hover {
-    text-decoration: underline; /* Přidá podtržení při najetí myší */
+    text-decoration: underline;
 }
 
-/* Nastavení pozice pro každý odkaz v currentLink */
 .currentLink > div {
-    position: relative; /* Aby dropdown byl správně umístěn vzhledem k rodiči */
+    position: relative;
 }
 
-/* Drobná optimalizace pro hoverování */
 .currentLink > div:hover .dropdown {
-    display: block; /* Zobrazí dropdown při najetí na rodičovský div */
+    display: block;
 }

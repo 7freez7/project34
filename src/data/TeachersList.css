@@ -56,8 +56,8 @@
 
 .filters button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #ffffff;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -65,11 +65,12 @@
 }
 
 .filters button:hover {
-  background-color: #0056b3;
+  background-color: black;
+  color: white;
 }
 
 .filters .active {
-  background-color: #28a745; /* Zelená barva pro aktivní tlačítko */
-  color: white;
+  background-color: #ffffff; /* Zelená barva pro aktivní tlačítko */
+  color: black;
   font-weight: bold;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
-import About from "./pages/About";
 import Uvod from "./pages/index";
 import Kontakt from "./pages/Kontakt";
 import Obory from "./pages/Obory";
@@ -23,15 +22,14 @@ import Hudebni from "./pages/obory/Hudebni";
 import Tanecni from "./pages/obory/Tanecni";
 import Vytvarni from "./pages/obory/Vytvarni";
 
-import Absolventi from "./pages/uvod/Absolventi"
+import Absolventi from "./pages/uvod/Absolventi";
 import Historie from "./pages/uvod/Historie";
 import Pracoviste from "./pages/uvod/Pracoviste";
 import Soucasnost from "./pages/uvod/Soucasnost";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
 import TeachersList from "./data/TeachersList";
 
-
-
+import Aktuality from "./pages/Aktuality";
 
 import {
   BrowserRouter as Router,
@@ -47,14 +45,11 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Uvod />} />
-            <Route path="/about" element={<About />}></Route>
             <Route path="/kontakt" element={<Kontakt />} />
             <Route path="/obory" element={<Obory />} />
             <Route path="/galerie" element={<Galerie />} />
             <Route path="/documents" element={<Documents />} />
             <Route path="/chcinazus" element={<ChciNaZus />} />
-
-
 
             <Route path="chcinazus/prihlaska" element={<Prihlaska />} />
             <Route path="chcinazus/prijmacky" element={<Prijmacky />} />
@@ -73,7 +68,7 @@ function App() {
             <Route path="/uvod/soucasnost" element={<Soucasnost />} />
             <Route path="/uvod/teachers" element={<TeachersList />} />
 
-
+            <Route path="/aktuality" element={<Aktuality />} />
           </Routes>
         </main>
         <Footer />

@@ -190,3 +190,65 @@ a {
 ul li {
 font-size: 20px;
 }
+
+.aktuality-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2%;
+}
+
+.aktuality-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.aktualita {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 2% 0;
+  overflow: hidden;
+}
+
+.aktualita img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.aktualita-content {
+  padding: 16px;
+}
+
+.aktualita-content h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.aktualita-meta {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.aktualita-content p {
+  margin-top: 8px;
+  color: #444;
+}
+
+.aktualita-link {
+  margin-top: 16px;
+  color: #1d4ed8;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.aktualita-link:hover {
+  text-decoration: underline;
+}
