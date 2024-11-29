@@ -1,80 +1,116 @@
-import React from "react";
-import "../App";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-// Typy pro data aktuality
 interface AktualitaProps {
-  id: number; // Přidáno pole ID
+  id?: number;
   title: string;
   date: string;
   category: string;
   description: string;
   link: string;
-  image?: string; // Obrázek je nepovinný
+  image?: string;
 }
 
-// Komponenta pro jednotlivou aktualitu
-const Aktualita: React.FC<AktualitaProps> = ({
-  title,
-  date,
-  category,
-  description,
-  link,
-  image,
+const AktualitaForm: React.FC<{ aktualita?: AktualitaProps; isEdit?: boolean }> = ({
+  aktualita,
+  isEdit = false,
 }) => {
+  const [formData, setFormData] = useState<AktualitaProps>({
+    id: aktualita?.id || 0,
+    title: aktualita?.title || "",
+    date: aktualita?.date || "",
+    category: aktualita?.category || "",
+    description: aktualita?.description || "",
+    link: aktualita?.link || "",
+    image: aktualita?.image || "",
+  });
+
+  // Funkce pro změnu hodnot formuláře
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Funkce pro odeslání formuláře
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const apiUrl = isEdit
+      ? `/api/aktuality/${formData.id}` // PUT pro editaci
+      : "/api/aktuality"; // POST pro přidání nové aktuality
+
+    const method = isEdit ? "put" : "post";
+
+    try {
+      await axios[method](apiUrl, formData, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("authToken")}`, // Přidáme autentizační token
+        },
+      });
+      alert(isEdit ? "Aktualita byla upravena." : "Aktualita byla přidána.");
+    } catch (error) {
+      console.error("Chyba při odesílání formuláře:", error);
+      alert("Nastala chyba při odesílání formuláře.");
+    }
+  };
+
   return (
-    <div className="aktualita">
-      {/* Pokud není obrázek definován, použije se výchozí obrázek */}
-      <img
-        src={image || "https://via.placeholder.com/150"}
-        alt="Thumbnail"
-        className="aktualita-image"
-      />
-      <div className="aktualita-content">
-        <h2>{title}</h2>
-        <p className="aktualita-meta">
-          {date} • {category}
-        </p>
-        <p>{description}</p>
-        <a href={link} className="aktualita-link">
-          číst více
-        </a>
-      </div>
+    <div>
+      <h2>{isEdit ? "Upravit Aktualitu" : "Přidat Novou Aktualitu"}</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleInputChange}
+          placeholder="Název"
+          required
+        />
+        <input
+          type="text"
+          name="date"
+          value={formData.date}
+          onChange={handleInputChange}
+          placeholder="Datum"
+          required
+        />
+        <input
+          type="text"
+          name="category"
+          value={formData.category}
+          onChange={handleInputChange}
+          placeholder="Kategorie"
+          required
+        />
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleInputChange}
+          placeholder="Popis"
+          required
+        />
+        <input
+          type="text"
+          name="link"
+          value={formData.link}
+          onChange={handleInputChange}
+          placeholder="Odkaz"
+          required
+        />
+        <input
+          type="text"
+          name="image"
+          value={formData.image}
+          onChange={handleInputChange}
+          placeholder="URL obrázku"
+        />
+        <button type="submit">{isEdit ? "Upravit" : "Přidat"}</button>
+      </form>
     </div>
   );
 };
 
-// Kontejnerová komponenta pro seznam aktualit
-const AktualityContainer: React.FC = () => {
-  const aktuality: AktualitaProps[] = [
-    {
-      id: 1, // ID aktuality
-      title: "Reportáž o chystaném výročním koncertu",
-      date: "5. 11. 2024",
-      category: "Hudební",
-      description: "Reportáž...",
-      link: "/aktualita/koncert",
-      // Žádný obrázek – použije se výchozí
-    },
-    {
-      id: 2, // ID aktuality
-      title: "Cimbálová muzika Draguň na veletrhu",
-      date: "16. 10. 2024",
-      category: "Hudební",
-      description:
-        "Naše cimbálová muzika Draguň se představila na zahájení tradičním veletrhu vzdělávání...",
-      link: "/aktualita/dragun-veletrh",
-      // Žádný obrázek – použije se výchozí
-    },
-  ];
-
-  return (
-    <div className="aktuality-container">
-      <h1 className="aktuality-title">Nejnovější aktuality</h1>
-      {aktuality.map((aktualita) => (
-        <Aktualita key={aktualita.id} {...aktualita} />
-      ))}
-    </div>
-  );
-};
-
-export default AktualityContainer;
+export default AktualitaForm;
