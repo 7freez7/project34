@@ -33,7 +33,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('uvod')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/">Uvod ▼</Link>
+          <Link to="/">Úvod ▼</Link>
           {activeDropdown === 'uvod' && (
             <ul className="dropdown">
               <li><Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link></li>
@@ -49,12 +49,12 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('obory')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="#">OBORY ▼</Link>
+          <Link to="#">Obory ▼</Link>
           {activeDropdown === 'obory' && (
             <ul className="dropdown">
               <li><Link to="/obory/hudebni">Hudební Obor</Link></li>
               <li><Link to="/obory/tanecni">Taneční Obor</Link></li>
-              <li><Link to="/obory/vytvarni">Výtvarní Obor</Link></li>
+              <li><Link to="/obory/vytvarni">Výtvarný Obor</Link></li>
             </ul>
           )}
         </div>
@@ -63,7 +63,7 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownMouseEnter('galerie')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-          <Link to="/galerie">Galerie ▼</Link>
+          <Link to="#">Galerie ▼</Link>
           {activeDropdown === 'galerie' && (
             <ul className="dropdown">
               <li><Link to="/galerie/foto">Fotky</Link></li>
@@ -72,18 +72,17 @@ const Navbar = () => {
           )}
         </div>
 
-
-
-        <Link to="/kontakt">KONTAKT</Link>
+        <Link to="/aktuality">Aktuality</Link>
         <Link to="/documents">Dokumenty</Link>
-        <Link to="/aktuality">aktuality</Link>
+        <Link to="/kontakt">Kontakt</Link>
+
 
 
         <div 
           onMouseEnter={() => handleDropdownMouseEnter('chcinazus')} 
           onMouseLeave={handleDropdownMouseLeave}
         >
-        <Link to="/chcinazus">CHCI NA ZUŠ ▼</Link>
+        <Link to="/chcinazus">Chci na ZUŠ ▼</Link>
         {activeDropdown === 'chcinazus' && (
             <ul className="dropdown">
               <li><Link to="/chcinazus/prihlaska">Podání Přihlášky</Link></li>

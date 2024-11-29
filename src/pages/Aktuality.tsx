@@ -3,6 +3,7 @@ import "../App";
 
 // Typy pro data aktuality
 interface AktualitaProps {
+  id: number; // Přidáno pole ID
   title: string;
   date: string;
   category: string;
@@ -46,15 +47,16 @@ const Aktualita: React.FC<AktualitaProps> = ({
 const AktualityContainer: React.FC = () => {
   const aktuality: AktualitaProps[] = [
     {
+      id: 1, // ID aktuality
       title: "Reportáž o chystaném výročním koncertu",
       date: "5. 11. 2024",
       category: "Hudební",
       description: "Reportáž...",
       link: "/aktualita/koncert",
       // Žádný obrázek – použije se výchozí
-
     },
     {
+      id: 2, // ID aktuality
       title: "Cimbálová muzika Draguň na veletrhu",
       date: "16. 10. 2024",
       category: "Hudební",
@@ -68,8 +70,8 @@ const AktualityContainer: React.FC = () => {
   return (
     <div className="aktuality-container">
       <h1 className="aktuality-title">Nejnovější aktuality</h1>
-      {aktuality.map((aktualita, index) => (
-        <Aktualita key={index} {...aktualita} />
+      {aktuality.map((aktualita) => (
+        <Aktualita key={aktualita.id} {...aktualita} />
       ))}
     </div>
   );

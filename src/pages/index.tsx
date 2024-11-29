@@ -1,6 +1,9 @@
 import React from "react";
-import ZusHM from "../../public/assets/img/artt.jpg";
+import Aktuality from "../pages/Aktuality";
+
 import { Link } from 'react-router-dom'; // Import Link pro navigaci
+import ZusHM from "../../public/assets/img/artt.jpg";
+
 import Art from "../../public/assets/img/Art.jpg";
 import Dance from "../../public/assets/img/Dance.jpg";
 import Hudba from "../../public/assets/img/Hudba.jpg";
@@ -56,6 +59,17 @@ const Uvod = () => {
         </Link>
       </div>
     </div>
+  <div className="container-aktuality">
+  <h2 style={{ color: 'white' }}>Aktuality</h2>
+  <Aktuality />
+
+  </div>
+
+
+
+    
+
+
   </div>
   );
 };

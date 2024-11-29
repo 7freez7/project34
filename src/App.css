@@ -252,3 +252,69 @@ font-size: 20px;
 .aktualita-link:hover {
   text-decoration: underline;
 }
+
+
+/* Stylování pro levý spodní roh */
+.fixed-bottom-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.9); /* Poloprůhledné pozadí */
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  overflow-y: auto;
+  max-height: 50vh; /* Omezí maximální výšku */
+}
+
+.fixed-bottom-left h2 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.fixed-bottom-left .aktuality-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fixed-bottom-left .aktualita {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0;
+}
+
+.fixed-bottom-left .aktualita h2 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.fixed-bottom-left .aktualita-meta {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.fixed-bottom-left .aktualita-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.fixed-bottom-left .aktualita-link:hover {
+  text-decoration: underline;
+}
+
+.container-aktuality {
+  background: #007bff;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2); /* Stín zvrchu */
+
+}
+
+.container-aktuality h2 {
+  padding: 2%;
+  margin-bottom: 0;
+}
