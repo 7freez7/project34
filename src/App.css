@@ -39,22 +39,22 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 2em;
   text-align: center;
 }
 
 h2 {
   text-align: center;
-  font-size: 40px;
+  font-size: 1.5em;
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 1.3em;
   text-align: center;
 }
 
 p {
-  font-size: 20px;
+  font-size: 1em;
 }
 
 a {
@@ -149,7 +149,7 @@ a {
 .obor-druh img {
   width: 100%;
   height: auto;
-  max-height: 200px;
+  max-height: 120px;
   /* Odstranit stín */
   /* box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); */ /* Tuto řádku můžete zakomentovat nebo smazat */
   border-top-left-radius: 25px; 
@@ -183,7 +183,7 @@ a {
 }
 
 ul li {
-font-size: 20px;
+font-size: 1em;
 }
 
 .aktuality-container {
