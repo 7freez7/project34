@@ -29,49 +29,52 @@ import Soucasnost from "./pages/uvod/Soucasnost";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
 import TeachersList from "./data/TeachersList";
 
-import Aktuality from "./pages/Aktuality";
+import Aktuality from "./components/Aktuality";
+import { AuthProvider } from "./context/AuthContext";
 
 import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Outlet,
 } from "react-router-dom";
-function App() {
+
+const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Uvod />} />
-            <Route path="/kontakt" element={<Kontakt />} />
-            <Route path="/obory" element={<Obory />} />
-            <Route path="/galerie" element={<Galerie />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/chcinazus" element={<ChciNaZus />} />
+        <AuthProvider>
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Uvod />} />
+              <Route path="/kontakt" element={<Kontakt />} />
+              <Route path="/obory" element={<Obory />} />
+              <Route path="/galerie" element={<Galerie />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/chcinazus" element={<ChciNaZus />} />
 
-            <Route path="chcinazus/prihlaska" element={<Prihlaska />} />
-            <Route path="chcinazus/prijmacky" element={<Prijmacky />} />
-            <Route path="chcinazus/priprava" element={<Priprava />} />
+              <Route path="chcinazus/prihlaska" element={<Prihlaska />} />
+              <Route path="chcinazus/prijmacky" element={<Prijmacky />} />
+              <Route path="chcinazus/priprava" element={<Priprava />} />
 
-            <Route path="/galerie/foto" element={<Foto />} />
-            <Route path="/galerie/video" element={<Video />} />
+              <Route path="/galerie/foto" element={<Foto />} />
+              <Route path="/galerie/video" element={<Video />} />
 
-            <Route path="/obory/hudebni" element={<Hudebni />} />
-            <Route path="/obory/tanecni" element={<Tanecni />} />
-            <Route path="/obory/vytvarni" element={<Vytvarni />} />
+              <Route path="/obory/hudebni" element={<Hudebni />} />
+              <Route path="/obory/tanecni" element={<Tanecni />} />
+              <Route path="/obory/vytvarni" element={<Vytvarni />} />
 
-            <Route path="/uvod/absolventi" element={<Absolventi />} />
-            <Route path="/uvod/historie" element={<Historie />} />
-            <Route path="/uvod/pracoviste" element={<Pracoviste />} />
-            <Route path="/uvod/soucasnost" element={<Soucasnost />} />
-            <Route path="/uvod/teachers" element={<TeachersList />} />
+              <Route path="/uvod/absolventi" element={<Absolventi />} />
+              <Route path="/uvod/historie" element={<Historie />} />
+              <Route path="/uvod/pracoviste" element={<Pracoviste />} />
+              <Route path="/uvod/soucasnost" element={<Soucasnost />} />
+              <Route path="/uvod/teachers" element={<TeachersList />} />
 
-            <Route path="/aktuality" element={<Aktuality />} />
-          </Routes>
-        </main>
-        <Footer />
+              <Route path="/aktuality" element={<Aktuality />} />
+            </Routes>
+          </main>
+          <Footer />
+        </AuthProvider>
       </Router>
     </div>
   );

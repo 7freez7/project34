@@ -1,0 +1,17 @@
+{
+  "aktuality": [
+    {
+      "id": 1,
+      "title": "Nový kurz hudby",
+      "description": "Přidejte se k našemu novému kurzu hudby!",
+      "image": "/assets/img/Hudba.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Výstava výtvarných děl",
+      "description": "Přijďte se podívat na výstavu našich studentů.",
+      "image": "/assets/img/Art.jpg"
+    }
+
+  ]
+}

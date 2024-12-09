@@ -1,0 +1,54 @@
+.aktuality-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .aktualita {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .aktualita img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .aktualita-content {
+    flex: 1;
+  }
+  
+  .admin-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .admin-panel {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .admin-panel input,
+  .admin-panel textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-panel button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .admin-panel button:hover {
+    background-color: #45a049;
+  }
+  
