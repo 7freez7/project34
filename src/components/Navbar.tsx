@@ -74,6 +74,11 @@ const Navbar = () => {
 
         <Link to="/aktuality">Aktuality</Link>
         <Link to="/documents">Dokumenty</Link>
+
+        <Link to="/schoolsList">Api</Link>
+
+
+        
         <Link to="/kontakt">Kontakt</Link>
 
 
@@ -93,6 +98,8 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+      
     </div>
   );
 };

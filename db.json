@@ -11,7 +11,12 @@
       "title": "Výstava výtvarných děl",
       "description": "Přijďte se podívat na výstavu našich studentů.",
       "image": "/assets/img/Art.jpg"
+    },
+    {
+      "id": 0,
+      "title": "erkejb",
+      "description": "dvjn",
+      "image": "dv"
     }
-
   ]
 }

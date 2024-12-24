@@ -29,6 +29,8 @@ import Soucasnost from "./pages/uvod/Soucasnost";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
 import TeachersList from "./data/TeachersList";
 
+import SchoolsList from "./pages/SchoolsList";
+
 import Aktuality from "./components/Aktuality";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -71,6 +73,10 @@ const App: React.FC = () => {
               <Route path="/uvod/teachers" element={<TeachersList />} />
 
               <Route path="/aktuality" element={<Aktuality />} />
+
+
+              <Route path="/schoolsList" element={<SchoolsList />} />
+
             </Routes>
           </main>
           <Footer />
