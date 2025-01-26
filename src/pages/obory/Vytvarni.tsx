@@ -1,7 +1,10 @@
 import React from "react";
 import img from "../../../public/assets/img/paintt.jpg";
+import teachers from "../../data/teachers";
 
 const Vytvarni = () => {
+  const artTeachers = teachers.filter(teacher => teacher.role === "Učitel výtvarného oboru");
+
   return (
     <div>
       <div className="oborImage">

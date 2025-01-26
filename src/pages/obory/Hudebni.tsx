@@ -1,7 +1,10 @@
 import React from "react";
 import Hudba from "../../public/assets/img/Hudba.jpg";
+import teachers from "../../data/teachers";
+
 
 const Hudebni = () => {
+  const musicTeachers = teachers.filter(teacher => teacher.role === "Učitel hudebního oboru");
   return (
     <div>
       <div className="oborImage">
@@ -27,8 +30,20 @@ const Hudebni = () => {
       <li>Trubka</li>
       <li>Violoncello</li>
       <li>Kontrabas</li>
-    </ul>
+      </ul>
 
+      </div>
+      <div className="teachers-list" style={{marginBottom: "3%", padding: "0"}}>
+        {musicTeachers.map((teacher, index) => (
+          <div className="teacher-card" key={index}>
+            <h2>{teacher.name}</h2>
+            <p>Pozice: {teacher.role}</p>
+            {teacher.status && <p>Status: {teacher.status}</p>}
+            {teacher.subjects && teacher.subjects.length > 0 ? (
+              <p>Obory: {teacher.subjects.join(", ")}</p>
+            ) : null}
+          <p>Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a></p></div>
+        ))}
       </div>
     </div>
   );
