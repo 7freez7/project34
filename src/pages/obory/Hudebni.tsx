@@ -32,7 +32,18 @@ const Hudebni = () => {
       <li>Kontrabas</li>
       </ul>
 
+      <p>Náš obor se nezaměřuje pouze na klasickou hudební oblast, ale nabízí i možnost zpěvu.</p>
+      
       </div>
+
+      <div className="info-container2">
+        <h3>Pro koho je hudební obor určen?</h3>
+        <p>Přihlásit se mohou děti od 5 let do přípravného studia a děti od 7 let do základního studia. 
+          Výuka je individuální (hra na nástroj, zpěv) i kolektivní (hudební nauka, souborová, komorní a orchestrální hra a základy souhry) dle věku a zájmu studenta. 
+          Žáci mohou vystupovat na koncertech, městských slavnostech, festivalech a zúčastnit se soutěží.
+        </p>
+      </div>
+
       <div className="teachers-list" style={{marginBottom: "3%", padding: "0"}}>
         {musicTeachers.map((teacher, index) => (
           <div className="teacher-card" key={index}>
