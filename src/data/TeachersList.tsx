@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import teachers from "../data/teachers";
 import "./TeachersList.css";
 
-
 const TeachersList: React.FC = () => {
   const [filter, setFilter] = useState<string>(""); 
 
@@ -53,7 +52,8 @@ const TeachersList: React.FC = () => {
           >
             {/* Obrázek učitele se zobrazí nad ostatními informacemi */}
             <img
-              src={teacher.image}
+              /*src={teacher.image}*/
+              /*src={require(teacher.image)}*/
               alt={teacher.name}
               className="teacher-photo"
             />

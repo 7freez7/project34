@@ -23,9 +23,8 @@ import Tanecni from "./pages/obory/Tanecni";
 import Vytvarni from "./pages/obory/Vytvarni";
 
 import Absolventi from "./pages/uvod/Absolventi";
-import Historie from "./pages/uvod/Historie";
+import OSkole from "./pages/uvod/OSkole";
 import Pracoviste from "./pages/uvod/Pracoviste";
-import Soucasnost from "./pages/uvod/Soucasnost";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
 import TeachersList from "./data/TeachersList";
 
@@ -33,6 +32,7 @@ import TeachersList from "./data/TeachersList";
 import Aktuality from "./components/Aktuality";
 import { AuthProvider } from "./context/AuthContext";
 
+import NotFound from "./NotFound";
 import {
   BrowserRouter as Router,
   Route,
@@ -66,14 +66,13 @@ const App: React.FC = () => {
               <Route path="/obory/vytvarni" element={<Vytvarni />} />
 
               <Route path="/uvod/absolventi" element={<Absolventi />} />
-              <Route path="/uvod/historie" element={<Historie />} />
+              <Route path="/uvod/about" element={<OSkole />} />
               <Route path="/uvod/pracoviste" element={<Pracoviste />} />
-              <Route path="/uvod/soucasnost" element={<Soucasnost />} />
               <Route path="/uvod/teachers" element={<TeachersList />} />
 
               <Route path="/aktuality" element={<Aktuality />} />
 
-
+              <Route path="*" element={<NotFound />} />
 
             </Routes>
           </main>

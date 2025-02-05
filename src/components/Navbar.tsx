@@ -40,7 +40,7 @@ const Navbar = () => {
               <li><Link to="/uvod/teachers">Učitelé</Link></li>
               <li><Link to="/uvod/absolventi">Absolventi</Link></li>
               <li><Link to="/uvod/soucasnost">Současnost</Link></li>
-              <li><Link to="/uvod/historie">Historie</Link></li>
+              <li><Link to="/uvod/about">O škole</Link></li>
             </ul>
           )}
         </div>
