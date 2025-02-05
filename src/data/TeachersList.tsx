@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import teachers from "../data/teachers";
 import "./TeachersList.css";
 
+
 const TeachersList: React.FC = () => {
   const [filter, setFilter] = useState<string>(""); 
 
@@ -50,13 +51,22 @@ const TeachersList: React.FC = () => {
               .toLowerCase()}`}
             key={index}
           >
+            {/* Obrázek učitele se zobrazí nad ostatními informacemi */}
+            <img
+              src={teacher.image}
+              alt={teacher.name}
+              className="teacher-photo"
+            />
             <h2>{teacher.name}</h2>
             <p>Pozice: {teacher.role}</p>
             {teacher.status && <p>Status: {teacher.status}</p>}
-            {teacher.subjects && teacher.subjects.length > 0 ? (
+            {teacher.subjects && teacher.subjects.length > 0 && (
               <p>Obory: {teacher.subjects.join(", ")}</p>
-            ) : null}
-            <p>Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a></p>
+            )}
+            <p>
+              Email:{" "}
+              <a href={`mailto:${teacher.email}`}>{teacher.email}</a>
+            </p>
           </div>
         ))}
       </div>

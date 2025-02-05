@@ -16,6 +16,15 @@
   transition: border-color 0.3s ease, transform 0.3s ease; /* Přidání přechodu pro hladký efekt */
 }
 
+/* Styl pro obrázek učitele */
+.teacher-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
 /* Modrá barva okraje pro učitele hudebního oboru */
 .teacher-card.učitel-hudebního-oboru:hover {
   border-color: rgba(0, 0, 255, 1); /* Konečná barva okraje */
@@ -70,7 +79,7 @@
 }
 
 .filters .active {
-  background-color: #ffffff; /* Zelená barva pro aktivní tlačítko */
+  background-color: #ffffff; /* Aktivní tlačítko */
   color: black;
   font-weight: bold;
 }
