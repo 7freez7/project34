@@ -4,7 +4,6 @@ import teachers from "../../data/teachers";
 
 const Vytvarni = () => {
   const artTeachers = teachers.filter(teacher => teacher.role === "Učitel výtvarného oboru");
-
   return (
     <div>
       <div className="oborImage">
@@ -51,6 +50,19 @@ const Vytvarni = () => {
           <h3>Pro koho je výtvarný obor určen?</h3>
           <p>Přihlásit se mohou děti od 5 let do přípravného studia a děti od 7 let do základního studia. Výuka je kolektivní. Žáci mohou vystavovat a účastnit se soutěží.</p>
         </div>
+
+        <div className="teachers-list" style={{marginBottom: "3%", padding: "0"}}>
+        {artTeachers.map((teacher, index) => (
+          <div className="teacher-card" key={index}>
+            <h2>{teacher.name}</h2>
+            <p>Pozice: {teacher.role}</p>
+            {teacher.status && <p>Status: {teacher.status}</p>}
+            {teacher.subjects && teacher.subjects.length > 0 ? (
+              <p>Obory: {teacher.subjects.join(", ")}</p>
+            ) : null}
+          <p>Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a></p></div>
+        ))}
+      </div>
       
     </div>
   );

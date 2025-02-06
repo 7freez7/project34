@@ -125,12 +125,81 @@ const teachers = [
     email: "t.jirku@zushm.cz",
     image: require("../data/img.teachers/default.jpg")
   },
+
+  //ABSOLVENTI
   {
     name: "Tereza Hluchníková",
     role: "Učitel tanečního oboru",
     email: "t.hluchnikova@zushm.cz",
     image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Kateřina Šťastná",
+    role: "Absolvent",
+    instrument: "klavír",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Jan Novák",
+    role: "Absolvent",
+    instrument: "housle",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Tereza Malá",
+    role: "Absolvent",
+    instrument: "flétna",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Petr Svoboda",
+    role: "Absolvent",
+    instrument: "kytara",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Lucie Dvořáková",
+    role: "Absolvent",
+    instrument: "violoncello",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Martin Král",
+    role: "Absolvent",
+    instrument: "klarinet",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Anna Veselá",
+    role: "Absolvent",
+    instrument: "saxofon",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Jakub Němec",
+    role: "Absolvent",
+    instrument: "trubka",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Barbora Horáková",
+    role: "Absolvent",
+    instrument: "bicí",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "David Černý",
+    role: "Absolvent",
+    instrument: "varhany",
+    image: require("../data/img.teachers/default.jpg")
+  },
+  {
+    name: "Eliška Marešová",
+    role: "Absolvent",
+    instrument: "zpěv",
+    image: require("../data/img.teachers/default.jpg")
   }
+  
 ];
 
 export default teachers;
