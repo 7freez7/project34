@@ -13,126 +13,97 @@ const Aktuality: React.FC = () => {
   const [aktuality, setAktuality] = useState<Aktualita[]>([]);
   const [isAdmin, setIsAdmin] = useState(true);
   const [editingAktualita, setEditingAktualita] = useState<Aktualita | null>(null);
-  const [newAktualita, setNewAktualita] = useState<Aktualita>({
-    id: 0,
+  const [newAktualita, setNewAktualita] = useState<Omit<Aktualita, "id">>({
     title: "",
     description: "",
     image: "",
   });
 
-  // Načtení dat z backendu pomocí proxy
+  useEffect(() => {
+    fetchAktuality();
+  }, []);
+
   const fetchAktuality = async () => {
     try {
-      const response = await axios.get("/aktuality");  // Používání proxy
+      const response = await axios.get("http://localhost:5000/aktuality");
       setAktuality(response.data);
     } catch (error) {
       console.error("Chyba při načítání aktualit:", error);
     }
   };
 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+    setSelectedFile(event.target.files[0]); // Uložíme soubor
+    }
+  };
+
   const handleAdd = async () => {
-    if (newAktualita.title && newAktualita.description && newAktualita.image) {
+    if (newAktualita.title && newAktualita.description && selectedFile) {
       try {
-        const response = await axios.post("/aktuality", newAktualita);
+        const formData = new FormData();
+        formData.append("title", newAktualita.title);
+        formData.append("description", newAktualita.description);
+        formData.append("image", selectedFile); // Přidání souboru
+  
+        const response = await axios.post("http://localhost:5000/aktuality", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+  
         setAktuality([...aktuality, response.data]);
-        setNewAktualita({ id: 0, title: "", description: "", image: "" });
+        setNewAktualita({ title: "", description: "", image: "" });
+        setSelectedFile(null);
       } catch (error) {
         console.error("Chyba při přidávání aktuality:", error);
       }
     }
-  };
-
-  const handleSave = async () => {
-    if (editingAktualita) {
-      try {
-        await axios.put(`/aktuality/${editingAktualita.id}`, editingAktualita);
-        setAktuality(
-          aktuality.map((akt) =>
-            akt.id === editingAktualita.id ? editingAktualita : akt
-          )
-        );
-        setEditingAktualita(null);
-      } catch (error) {
-        console.error("Chyba při úpravě aktuality:", error);
-      }
-    }
-  };
+  }; 
 
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`/aktuality/${id}`);
+      await axios.delete(`http://localhost:5000/aktuality/${id}`);
       setAktuality(aktuality.filter((akt) => akt.id !== id));
     } catch (error) {
       console.error("Chyba při mazání aktuality:", error);
     }
   };
 
-  useEffect(() => {
-    fetchAktuality();
-  }, []);
-
   return (
     <div className="aktuality-container">
       {aktuality.map((akt) => (
         <div className="aktualita" key={akt.id}>
-          <img src={akt.image} alt={akt.title} />
-          <div className="aktualita-content">
+        {akt.image && (
+          <img src={`http://localhost:5000/uploads/${akt.image}`} alt={akt.title} />
+        )}  
+        <div className="aktualita-content">
             <h3>{akt.title}</h3>
             <p>{akt.description}</p>
             {isAdmin && (
               <div className="admin-controls">
-                <button onClick={() => setEditingAktualita(akt)}>Upravit</button>
                 <button onClick={() => handleDelete(akt.id)}>Smazat</button>
               </div>
             )}
           </div>
         </div>
       ))}
-
       {isAdmin && (
         <div className="admin-panel">
-          <h3>{editingAktualita ? "Upravit aktualitu" : "Přidat aktualitu"}</h3>
+          <h3>Přidat aktualitu</h3>
           <input
             type="text"
             placeholder="Název"
-            value={editingAktualita ? editingAktualita.title : newAktualita.title}
-            onChange={(e) =>
-              editingAktualita
-                ? setEditingAktualita({
-                    ...editingAktualita,
-                    title: e.target.value,
-                  })
-                : setNewAktualita({ ...newAktualita, title: e.target.value })
-            }
+            value={newAktualita.title}
+            onChange={(e) => setNewAktualita({ ...newAktualita, title: e.target.value })}
           />
           <textarea
             placeholder="Popis"
-            value={editingAktualita ? editingAktualita.description : newAktualita.description}
-            onChange={(e) =>
-              editingAktualita
-                ? setEditingAktualita({
-                    ...editingAktualita,
-                    description: e.target.value,
-                  })
-                : setNewAktualita({ ...newAktualita, description: e.target.value })
-            }
+            value={newAktualita.description}
+            onChange={(e) => setNewAktualita({ ...newAktualita, description: e.target.value })}
           />
-          <input
-            type="text"
-            placeholder="URL obrázku"
-            value={editingAktualita ? editingAktualita.image : newAktualita.image}
-            onChange={(e) =>
-              editingAktualita
-                ? setEditingAktualita({
-                    ...editingAktualita,
-                    image: e.target.value,
-                  })
-                : setNewAktualita({ ...newAktualita, image: e.target.value })
-            }
-          />
-          <button onClick={editingAktualita ? handleSave : handleAdd}>
-            {editingAktualita ? "Uložit" : "Přidat"}
-          </button>
+          <input type="file" accept="image/*" onChange={handleFileChange} />
+          <button onClick={handleAdd}>Přidat</button>
         </div>
       )}
     </div>
