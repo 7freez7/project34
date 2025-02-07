@@ -35,8 +35,20 @@ const storage = multer.diskStorage({
     },
   });
   
-  const upload = multer({ storage });
-
+  const upload = multer({
+    storage,
+    fileFilter: (req, file, cb) => {
+      const filetypes = /jpeg|jpg|png|gif/;
+      const mimetype = filetypes.test(file.mimetype);
+      const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  
+      if (mimetype && extname) {
+        return cb(null, true);
+      } else {
+        cb(new Error("Only image files are allowed"));
+      }
+    },
+  });
 app.post("/aktuality", upload.single("image"), (req, res) => {
     const { title, description } = req.body;
     const image = req.file ? req.file.filename : "";
@@ -47,7 +59,7 @@ app.post("/aktuality", upload.single("image"), (req, res) => {
     res.json(newAktualita);
   });
 
-  app.use("/uploads", express.static("uploads"));
+  app.use('/uploads', express.static('uploads'));
   app.get("/aktuality", (req, res) => {
   db.all("SELECT * FROM aktuality", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -56,18 +68,20 @@ app.post("/aktuality", upload.single("image"), (req, res) => {
 });
 
 app.post("/aktuality", upload.single("image"), (req, res) => {
-  const { title, description } = req.body;
-  const image = req.file ? `/uploads/${req.file.filename}` : "";
+    const { title, description } = req.body;
+    const image = req.file ? `/uploads/${req.file.filename}` : "";
   
-  db.run(
-    "INSERT INTO aktuality (title, description, image) VALUES (?, ?, ?)",
-    [title, description, image],
-    function (err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ id: this.lastID, title, description, image });
-    }
-  );
-});
+    console.log("Uploaded image:", image); // Log the image path
+  
+    db.run(
+      "INSERT INTO aktuality (title, description, image) VALUES (?, ?, ?)",
+      [title, description, image],
+      function (err) {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ id: this.lastID, title, description, image });
+      }
+    );
+  });
 
 app.delete("/aktuality/:id", (req, res) => {
   db.run("DELETE FROM aktuality WHERE id = ?", req.params.id, function (err) {
