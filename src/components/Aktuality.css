@@ -6,25 +6,26 @@
   
   .aktualita {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     align-items: flex-start;
   }
   
   .aktualita img {
-    max-width: 200px;
-    height: auto;
+    max-width: 100%;
+    height: 300px;
     border-radius: 8px;
   }
   
   .aktualita-content {
-    flex: 1;
     margin: 0 auto;
   }
-  
+
   .admin-controls {
     margin-top: 10px;
     display: flex;
     gap: 10px;
+    align-self: flex-start; /* Move buttons to the bottom left */
   }
   
   .admin-panel {
@@ -53,3 +54,26 @@
     background-color: #45a049;
   }
   
+  .aktualita button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+
+  }
+
+  .aktualita button:hover {
+    background-color: #45a049;
+  }
+
+  #ChooseFile {
+    background-color: #4caf50;
+  }
+
+  .aktualita img {
+    margin: 0 auto;
+    width: 400px;
+
+  }

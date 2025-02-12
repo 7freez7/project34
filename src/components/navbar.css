@@ -65,10 +65,11 @@ body {
     left: 50%; /* Vycentrování dropdownu */
     transform: translateX(-50%); /* Perfektní vycentrování */
     background-color: white;
-    border: 1px solid #ccc;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
     z-index: 1000;
     width: max-content; /* Přizpůsobí šířku obsahu */
-    padding: 5px 0;
+    padding: 2px 0;
+    border-radius: 20px;
 }
 
 .dropdown li {
