@@ -7,47 +7,66 @@ interface DateSlot {
   times: string[];
 }
 
-const defaultTimes = [
-  "08:00", "08:15", "08:30", "08:45", "09:00", "09:15", "09:30", "09:45",
-  "10:00", "10:15", "10:30", "10:45", "11:00", "11:15", "11:30", "11:45", "12:00"
-];
-
 const Prihlaska = () => {
   const [isAdmissionOpen, setIsAdmissionOpen] = useState<boolean>(false);
   const [selectedField, setSelectedField] = useState<string>("");
   const [availableDates, setAvailableDates] = useState<DateSlot[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ name: "", surname: "", phone: "", note: "" });
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ jmeno: "", datumNarozeni: "", rodicTel: "", obor: "", schuzka: "" });
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/admission-status").then((res) => {
       setIsAdmissionOpen(res.data.isOpen);
+    }).catch((error) => {
+      console.error("Error fetching admission status:", error);
     });
   }, []);
 
   const handleFieldSelect = (field: string) => {
     setSelectedField(field);
-    axios.get(`http://localhost:5000/api/available-dates?field=${field}`).then((res) => {
-      setAvailableDates(res.data.dates || []);
+    axios.get(`http://localhost:8080/api/prihlasky/vdata`).then((res) => {
+      const dates = Object.entries(res.data).map(([date, value]) => {
+        const [location, times] = (value as string).split(",[");
+        return { date, location, times: times.replace("]", "").split(" ").filter((time: string) => !time.includes(";0")) };
+      });
+      setAvailableDates(dates);
+    }).catch((error) => {
+      console.error("Error fetching available dates:", error);
+    });
+  };
+
+  const handleDateSelect = (date: string) => {
+    setSelectedDate(date);
+    axios.get(`http://localhost:8080/api/prihlasky/hdata`).then((res) => {
+      const dateData = res.data[date];
+      if (dateData) {
+        const [location, times] = dateData.split(",[");
+        setSelectedLocation(location);
+        setAvailableDates([{ date, location, times: times.replace("]", "").split(" ").filter((time: string) => !time.includes(";0")) }]);
+      }
+    }).catch((error) => {
+      console.error("Error fetching date data:", error);
     });
   };
 
   const handleSubmit = () => {
-    if (!selectedDate || !selectedTime) {
-      alert("Vyberte datum a čas.");
+    if (!selectedDate || !selectedTime || !selectedLocation) {
+      alert("Vyberte datum, čas a město.");
       return;
     }
 
     const reservationData = {
       ...formData,
-      field: selectedField,
-      date: selectedDate,
-      time: selectedTime,
+      obor: selectedField,
+      schuzka: `${selectedDate} ${selectedTime} ${selectedLocation}`,
     };
 
     axios.post("http://localhost:5000/api/submit-reservation", reservationData).then(() => {
       alert("Rezervace úspěšně odeslána!");
+    }).catch((error) => {
+      console.error("Error submitting reservation:", error);
     });
   };
 
@@ -69,21 +88,31 @@ const Prihlaska = () => {
               <h3>Vyberte datum a čas:</h3>
               <input
                 type="date"
-                onChange={(e) => setSelectedDate(e.target.value)}
+                onChange={(e) => handleDateSelect(e.target.value)}
                 className="date-picker"
               />
               {selectedDate && (
                 <div className="time-buttons">
                   <h4>{selectedDate}</h4>
-                  {defaultTimes.map((time) => (
-                    <button
-                      key={time}
-                      onClick={() => setSelectedTime(time)}
-                      className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
-                    >
-                      {time}
-                    </button>
-                  ))}
+                  {availableDates
+                    .filter((date) => date.date === selectedDate)
+                    .map((date) => (
+                      <div key={date.date}>
+                        <h4>{date.location}</h4>
+                        {date.times.map((time) => (
+                          <button
+                            key={time}
+                            onClick={() => {
+                              setSelectedTime(time);
+                              setSelectedLocation(date.location);
+                            }}
+                            className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
+                          >
+                            {time.split(";")[0]}
+                          </button>
+                        ))}
+                      </div>
+                    ))}
                 </div>
               )}
             </div>
@@ -92,31 +121,24 @@ const Prihlaska = () => {
           <input
             type="text"
             placeholder="Jméno"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value={formData.jmeno}
+            onChange={(e) => setFormData({ ...formData, jmeno: e.target.value })}
+            className="input-field"
+          />
+          <input
+            type="date"
+            placeholder="Datum narození"
+            value={formData.datumNarozeni}
+            onChange={(e) => setFormData({ ...formData, datumNarozeni: e.target.value })}
             className="input-field"
           />
           <input
             type="text"
-            placeholder="Příjmení"
-            value={formData.surname}
-            onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
+            placeholder="Telefon rodiče"
+            value={formData.rodicTel}
+            onChange={(e) => setFormData({ ...formData, rodicTel: e.target.value })}
             className="input-field"
           />
-          <input
-            type="text"
-            placeholder="Telefon"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="input-field"
-          />
-          <textarea
-            placeholder="Poznámka*"
-            value={formData.note}
-            onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-            className="textarea-field"
-          />
-          <span style={{fontSize:"12px", color:"gray", padding:"0px", margin:"0px"}}><p>*Nepovinné</p></span>
           <button onClick={handleSubmit} className="submit-button">Odeslat přihlášku</button>
         </div>
       ) : (
