@@ -52,30 +52,35 @@ const Prihlaska = () => {
   };
 
   return (
-    <div>
+    <div className="prihlaska-container">
       <h1>Přihláška</h1>
       {isAdmissionOpen ? (
-        <div>
+        <div className="form-container">
           <h2>Možnost rezervovat schůzku</h2>
           <label>Vyberte obor:</label>
-          <select onChange={(e) => handleFieldSelect(e.target.value)}>
+          <select onChange={(e) => handleFieldSelect(e.target.value)} className="field-select">
             <option value="">-- Vyberte --</option>
             <option value="TANECNI">Taneční</option>
             <option value="HUDEBNI">Hudební</option>
             <option value="VYTVARNY">Výtvarný</option>
           </select>
           {availableDates.length > 0 && (
-            <div>
+            <div className="date-time-container">
               <h3>Vyberte datum a čas:</h3>
               <input
                 type="date"
                 onChange={(e) => setSelectedDate(e.target.value)}
+                className="date-picker"
               />
               {selectedDate && (
-                <div>
+                <div className="time-buttons">
                   <h4>{selectedDate}</h4>
                   {defaultTimes.map((time) => (
-                    <button key={time} onClick={() => setSelectedTime(time)}>
+                    <button
+                      key={time}
+                      onClick={() => setSelectedTime(time)}
+                      className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
+                    >
                       {time}
                     </button>
                   ))}
@@ -89,25 +94,30 @@ const Prihlaska = () => {
             placeholder="Jméno"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="input-field"
           />
           <input
             type="text"
             placeholder="Příjmení"
             value={formData.surname}
             onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
+            className="input-field"
           />
           <input
             type="text"
             placeholder="Telefon"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="input-field"
           />
           <textarea
-            placeholder="Poznámka"
+            placeholder="Poznámka*"
             value={formData.note}
             onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+            className="textarea-field"
           />
-          <button onClick={handleSubmit}>Odeslat přihlášku</button>
+          <span style={{fontSize:"12px", color:"gray", padding:"0px", margin:"0px"}}><p>*Nepovinné</p></span>
+          <button onClick={handleSubmit} className="submit-button">Odeslat přihlášku</button>
         </div>
       ) : (
         <p>Přijímací řízení momentálně neprobíhá.</p>
