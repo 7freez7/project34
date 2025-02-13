@@ -5,6 +5,15 @@ import teachers from "../../data/teachers";
 
 const Hudebni = () => {
   const musicTeachers = teachers.filter(teacher => teacher.role === "Učitel hudebního oboru");
+
+    const getImagePath = (imageName: string) => {
+      try {
+        return require(`../../data/img.teachers/${imageName}`);
+      } catch {
+        return require("../../data/img.teachers/default.png");
+      }
+    };
+
   return (
     <div>
       <div className="oborImage">
@@ -44,9 +53,17 @@ const Hudebni = () => {
         </p>
       </div>
 
+      <h2 style={{textAlign:"center"}}>Učitelé vyučující hudební obor:</h2>
+
+
       <div className="teachers-list" style={{marginBottom: "3%", padding: "0"}}>
         {musicTeachers.map((teacher, index) => (
           <div className="teacher-card" key={index}>
+              <img
+              src={getImagePath(teacher.image)}
+              alt={teacher.name}
+              className="teacher-photo"
+            />
             <h2>{teacher.name}</h2>
             <p>Pozice: {teacher.role}</p>
             {teacher.status && <p>Status: {teacher.status}</p>}

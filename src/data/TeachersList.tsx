@@ -2,14 +2,33 @@ import React, { useState } from "react";
 import teachers from "../data/teachers";
 import "./TeachersList.css";
 
-const TeachersList: React.FC = () => {
-  const [filter, setFilter] = useState<string>(""); 
+// Funkce pro načítání obrázků
+const getImagePath = (imageName: string) => {
+  try {
+    return require(`../data/img.teachers/${imageName}`);
+  } catch {
+    return require("../data/img.teachers/default.png");
+  }
+};
 
-  const filteredTeachers = filter
-    ? teachers.filter((teacher) =>
+const TeachersList: React.FC = () => {
+  const [filter, setFilter] = useState<string>("");
+
+  const filteredTeachers = teachers
+    .filter((teacher) =>
+      ["učitel hudebního oboru", "učitel výtvarného oboru", "učitel tanečního oboru"].includes(teacher.role.toLowerCase())
+    )
+    .sort((a, b) => {
+      const aLastName = a.name.split(" ")[1];
+      const bLastName = b.name.split(" ")[1];
+      return aLastName.localeCompare(bLastName);
+    });
+
+  const displayedTeachers = filter
+    ? filteredTeachers.filter((teacher) =>
         teacher.role.toLowerCase().includes(filter.toLowerCase())
       )
-    : teachers;
+    : filteredTeachers;
 
   return (
     <div>
@@ -20,7 +39,7 @@ const TeachersList: React.FC = () => {
           className={!filter ? "active" : ""}
           onClick={() => setFilter("")}
         >
-          Všichni
+          Všichni Učitelé
         </button>
         <button
           className={filter === "hudebního oboru" ? "active" : ""}
@@ -43,17 +62,11 @@ const TeachersList: React.FC = () => {
       </div>
 
       <div className="teachers-list">
-        {filteredTeachers.map((teacher, index) => (
-          <div
-            className={`teacher-card ${teacher.role
-              .replace(/\s+/g, "-")
-              .toLowerCase()}`}
-            key={index}
-          >
-            {/* Obrázek učitele se zobrazí nad ostatními informacemi */}
+        {displayedTeachers.map((teacher, index) => (
+          <div className={`teacher-card`} key={index}>
+            {/* Obrázek učitele */}
             <img
-              /*src={teacher.image}*/
-              /*src={require(teacher.image)}*/
+              src={getImagePath(teacher.image)}
               alt={teacher.name}
               className="teacher-photo"
             />
@@ -64,8 +77,7 @@ const TeachersList: React.FC = () => {
               <p>Obory: {teacher.subjects.join(", ")}</p>
             )}
             <p>
-              Email:{" "}
-              <a href={`mailto:${teacher.email}`}>{teacher.email}</a>
+              Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a>
             </p>
           </div>
         ))}
