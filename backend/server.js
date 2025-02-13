@@ -1,8 +1,10 @@
-const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
-const cors = require("cors");
-const multer = require("multer");
-const path = require("path");
+import express from "express";
+import cors from "cors";
+import multer from "multer";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { addReservation, getAvailableDates } from "./reservations.js";
 
 const app = express();
 const port = 5000;
@@ -11,22 +13,11 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-const db = new sqlite3.Database("aktuality.db", (err) => {
-  if (err) console.error("Chyba připojení k databázi:", err);
-  console.log("Připojeno k databázi");
-});
-
-db.run(`CREATE TABLE IF NOT EXISTS aktuality (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT,
-  description TEXT,
-  image TEXT,
-  date TEXT,
-  category TEXT
-)`);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const storage = multer.diskStorage({
-  destination: "./uploads/",
+  destination: path.join(__dirname, "uploads"),
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
@@ -89,6 +80,26 @@ app.delete("/aktuality/:id", (req, res) => {
   });
 });
 
+app.get("/api/admission-status", (req, res) => {
+  res.json({ isOpen: true });
+});
+
+app.get("/api/available-dates", (req, res) => {
+  const field = req.query.field;
+  getAvailableDates(field, (err, dates) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ dates });
+  });
+});
+
+app.post("/api/submit-reservation", (req, res) => {
+  const reservation = req.body;
+  addReservation(reservation, (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(result);
+  });
+});
+
 app.listen(port, () => {
-  console.log(`Server běží na http://localhost:${port}`);
+  console.log(`Server je ted na http://localhost:${port}`);
 });
