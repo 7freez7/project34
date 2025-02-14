@@ -4,7 +4,7 @@ import axios from "axios";
 interface DateSlot {
   date: string;
   location: string;
-  times: string[];
+  times: string[]; // Očekáváme pole časů jako řetězce
 }
 
 const Prihlaska = () => {
@@ -17,38 +17,36 @@ const Prihlaska = () => {
   const [formData, setFormData] = useState({ jmeno: "", datumNarozeni: "", rodicTel: "", obor: "", schuzka: "" });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/admission-status").then((res) => {
-      setIsAdmissionOpen(res.data.isOpen);
-    }).catch((error) => {
-      console.error("Error fetching admission status:", error);
-    });
+    axios.get("http://localhost:5000/api/admission-status")
+      .then((res) => {
+        setIsAdmissionOpen(res.data.isOpen);
+      })
+      .catch((error) => {
+        console.error("Error fetching admission status:", error);
+      });
   }, []);
 
-  const handleFieldSelect = (field: string) => {
-    setSelectedField(field);
-    axios.get(`http://localhost:8080/api/prihlasky/vdata`).then((res) => {
-      const dates = Object.entries(res.data).map(([date, value]) => {
-        const [location, times] = (value as string).split(",[");
-        return { date, location, times: times.replace("]", "").split(" ").filter((time: string) => !time.includes(";0")) };
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/prihlasky/tdata")
+      .then((res) => {
+        const dates: DateSlot[] = Object.entries(res.data).map(([date, value]) => {
+          const [location, timesString] = (value as string).split(",[");
+          const times = timesString.replace("]", "").split(" ").map((t) => t.split(";")[0]);
+          return { date, location, times };
+        });
+        setAvailableDates(dates);
+      })
+      .catch((error) => {
+        console.error("Error fetching available dates:", error);
       });
-      setAvailableDates(dates);
-    }).catch((error) => {
-      console.error("Error fetching available dates:", error);
-    });
-  };
+  }, []);
 
   const handleDateSelect = (date: string) => {
     setSelectedDate(date);
-    axios.get(`http://localhost:8080/api/prihlasky/hdata`).then((res) => {
-      const dateData = res.data[date];
-      if (dateData) {
-        const [location, times] = dateData.split(",[");
-        setSelectedLocation(location);
-        setAvailableDates([{ date, location, times: times.replace("]", "").split(" ").filter((time: string) => !time.includes(";0")) }]);
-      }
-    }).catch((error) => {
-      console.error("Error fetching date data:", error);
-    });
+    const selectedDateData = availableDates.find(d => d.date === date);
+    if (selectedDateData) {
+      setSelectedLocation(selectedDateData.location);
+    }
   };
 
   const handleSubmit = () => {
@@ -63,11 +61,13 @@ const Prihlaska = () => {
       schuzka: `${selectedDate} ${selectedTime} ${selectedLocation}`,
     };
 
-    axios.post("http://localhost:5000/api/submit-reservation", reservationData).then(() => {
-      alert("Rezervace úspěšně odeslána!");
-    }).catch((error) => {
-      console.error("Error submitting reservation:", error);
-    });
+    axios.post("http://localhost:5000/api/submit-reservation", reservationData)
+      .then(() => {
+        alert("Rezervace úspěšně odeslána!");
+      })
+      .catch((error) => {
+        console.error("Error submitting reservation:", error);
+      });
   };
 
   return (
@@ -77,7 +77,7 @@ const Prihlaska = () => {
         <div className="form-container">
           <h2>Možnost rezervovat schůzku</h2>
           <label>Vyberte obor:</label>
-          <select onChange={(e) => handleFieldSelect(e.target.value)} className="field-select">
+          <select onChange={(e) => setSelectedField(e.target.value)} className="field-select">
             <option value="">-- Vyberte --</option>
             <option value="TANECNI">Taneční</option>
             <option value="HUDEBNI">Hudební</option>
@@ -86,38 +86,37 @@ const Prihlaska = () => {
           {availableDates.length > 0 && (
             <div className="date-time-container">
               <h3>Vyberte datum a čas:</h3>
-              <input
-                type="date"
-                onChange={(e) => handleDateSelect(e.target.value)}
-                className="date-picker"
-              />
+              <select onChange={(e) => handleDateSelect(e.target.value)} className="date-picker">
+                <option value="">-- Vyberte datum --</option>
+                {availableDates.map((date) => (
+                  <option key={date.date} value={date.date}>{date.date} ({date.location})</option>
+                ))}
+              </select>
               {selectedDate && (
                 <div className="time-buttons">
-                  <h4>{selectedDate}</h4>
+                  <h4>{selectedDate} - {selectedLocation}</h4>
                   {availableDates
-                    .filter((date) => date.date === selectedDate)
-                    .map((date) => (
-                      <div key={date.date}>
-                        <h4>{date.location}</h4>
-                        {date.times.map((time) => (
+                    .find((date) => date.date === selectedDate)
+                    ?.times.map((time) => {
+                      if (typeof time === "string") { // Ujistíme se, že time je string
+                        return (
                           <button
                             key={time}
-                            onClick={() => {
-                              setSelectedTime(time);
-                              setSelectedLocation(date.location);
-                            }}
+                            onClick={() => setSelectedTime(time)}
                             className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
                           >
-                            {time.split(";")[0]}
+                            {time}
                           </button>
-                        ))}
-                      </div>
-                    ))}
+                        );
+                      }
+                      return null; // Pokud 'time' není string, nebudeme jej vykreslovat
+                    })}
                 </div>
               )}
             </div>
           )}
           <h3>Vaše údaje:</h3>
+          <p>Jméno</p>
           <input
             type="text"
             placeholder="Jméno"
@@ -125,6 +124,7 @@ const Prihlaska = () => {
             onChange={(e) => setFormData({ ...formData, jmeno: e.target.value })}
             className="input-field"
           />
+          <p>Datum narození</p>
           <input
             type="date"
             placeholder="Datum narození"
@@ -132,6 +132,7 @@ const Prihlaska = () => {
             onChange={(e) => setFormData({ ...formData, datumNarozeni: e.target.value })}
             className="input-field"
           />
+          <p>Telefon rodiče</p>
           <input
             type="text"
             placeholder="Telefon rodiče"
