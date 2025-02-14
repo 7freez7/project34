@@ -32,7 +32,11 @@ const TeachersList: React.FC = () => {
 
   return (
     <div>
-      <h1>Učitelé</h1>
+
+      <div className="oborImage">
+          <img src={`${process.env.PUBLIC_URL}/assets/img/crystal.png`} alt="crystal" className="img" />
+          <h1>Učitelé</h1>
+          </div>
 
       <div className="filters">
         <button

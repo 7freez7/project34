@@ -30,6 +30,7 @@ const Aktuality: React.FC = () => {
   const fetchAktuality = async () => {
     try {
       const response = await axios.get("http://localhost:5000/aktuality");
+      console.log(response.data); // Debugování, jestli se obrázek správně vrací
       setAktuality(response.data);
     } catch (error) {
       console.error("Chyba při načítání aktualit:", error);

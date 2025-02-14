@@ -6,8 +6,12 @@ import Tremosnice from "../../../public/assets/img/Tremosnice.jpg";
 const OSkole = () => {
   return (
     <div>
+      <div className="oborImage">
+        <img src={`${process.env.PUBLIC_URL}/assets/img/crystal.png`} alt="crystal" className="img" />
       <h1>O naší škole</h1>
-      <div className="info-container" style={{}}>
+      </div>
+
+      <div className="info-container">
       <h2>Historie</h2>
 
       <p>Vzniku samostatné umělecké školy v Heřmanově Městci předcházelo období, 
