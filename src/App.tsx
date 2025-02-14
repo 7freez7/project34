@@ -43,7 +43,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <AuthProvider>
+        
           <Navbar />
           <main>
             <Routes>
@@ -77,7 +77,6 @@ const App: React.FC = () => {
             </Routes>
           </main>
           <Footer />
-        </AuthProvider>
       </Router>
     </div>
   );
