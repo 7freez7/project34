@@ -121,9 +121,10 @@ const Aktuality: React.FC = () => {
                   value={editingAktualita.category}
                   onChange={(e) => setEditingAktualita({ ...editingAktualita, category: e.target.value })}
                 >
-                  <option value="hudební">Hudební</option>
-                  <option value="výtvarný">Výtvarný</option>
-                  <option value="taneční">Taneční</option>
+                  <option value="">-Vyberte obor-</option>
+                  <option value="Hudební obor">Hudební</option>
+                  <option value="Výtvarný obor">Výtvarný</option>
+                  <option value="Taneční obor">Taneční</option>
                 </select>
                 <button onClick={handleUpdate}>Uložit</button>
               </>

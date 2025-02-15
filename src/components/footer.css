@@ -22,7 +22,6 @@
     font-size: 20px;
   }
 
-
   .footer-left {
     flex: 0 0 60%;
     padding: 20px;
@@ -60,4 +59,39 @@
     box-shadow: 0 5px 8px rgba(255, 255, 255, 0.2);
 
   }
+
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-left {
+      order: 2; /* Přesune mapu pod text */
+      width: 100%;
+      padding-top: 20px;
+    }
+  
+    .footer-right {
+      order: 1; /* Text zůstane nahoře */
+      width: 100%;
+      align-items: center;
+    }
+  
+    .footer-right p,
+    .footer-right h4 {
+      text-align: center;
+    }
+  
+    .map-container {
+      width: 100%;
+      height: 250px;
+    }
+  
+    .map-container iframe {
+      height: 100%;
+    }
+  }
+  
 

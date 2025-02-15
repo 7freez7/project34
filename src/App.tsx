@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react"; 
+import { useLocation } from "react-router-dom"; 
 import "./App.css";
 
 import Navbar from "./components/Navbar";
@@ -28,7 +29,6 @@ import Pracoviste from "./pages/uvod/Pracoviste";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
 import TeachersList from "./data/TeachersList";
 
-
 import Aktuality from "./components/Aktuality";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -39,10 +39,22 @@ import {
   Routes,
 } from "react-router-dom";
 
+// ScrollToTop component that scrolls to the top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top
+  }, [pathname]); // Re-run on pathname change
+
+  return null;
+}
+
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
+        <ScrollToTop /> {/* Place this here to trigger on route changes */}
         <AuthProvider>
           <Navbar />
           <main>
@@ -73,7 +85,6 @@ const App: React.FC = () => {
               <Route path="/aktuality" element={<Aktuality />} />
 
               <Route path="*" element={<NotFound />} />
-
             </Routes>
           </main>
           <Footer />
