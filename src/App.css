@@ -364,3 +364,30 @@ font-size: 1em;
 }
 
 /* KONEC PRIHLASKY */
+
+@media (max-width: 768px) {
+  .headerImage{
+    overflow: hidden;
+    width: 100%;
+  }
+
+  body, html {
+    overflow-x: hidden; /* Zabrání horizontálnímu posunu */
+    width: 100%;
+  }
+
+  .obor-druh {
+    width: 100%;
+    margin-bottom: 4%;
+  }
+
+  .oborImage {
+    box-shadow: none;
+    background-color: none;
+  }
+
+  .info-container, .info-container2 {
+    padding: 3%;
+
+  }
+}
