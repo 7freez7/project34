@@ -1,0 +1,467 @@
+/* Globální styly */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hlavní kontejner */
+.container {
+    user-select: none;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Logo sekce */
+.logo-container {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    align-items: flex-start; /* Align to the top */
+    position: absolute; /* Position relative to the nearest positioned ancestor */
+    top: 20px; /* Space from the top */
+    left: 20px; /* Space from the left */
+}
+
+.logo-image {
+    max-width: 100%;
+    height: 80px;
+    width: auto; /* Ensuring the logo maintains aspect ratio */
+}
+
+/* Bílý box s formuláři */
+.white-box {
+    background: hsla(0, 0%, 100%, 0.877);
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-shadow: 0 0 2em hsl(231, 62%, 94%);
+    gap: 2em;
+    width: 100%; /* Allowing the box to adapt to smaller screen sizes */
+    max-width: 500px; /* Setting a max-width for responsiveness */
+}
+
+/* Kontejner pro formuláře a obsah */
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+/* Nadpisy */
+.heading {
+    font-size: 2.5em; /* Slightly larger for better hierarchy */
+    text-align: center;
+    color: hsl(0, 0%, 15%);
+}
+
+.sub-heading {
+    font-size: 1.5em;
+    color: hsl(0, 0%, 15%);
+    text-align: center; /* Ensuring sub-headings are centered */
+}
+
+/* Formuláře */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em; /* Adjusting gap for better spacing */
+}
+
+.label {
+    font-weight: bold;
+    color: hsl(0, 0%, 15%);
+    margin-bottom: 0.5em; /* Adding a small gap below the label */
+}
+
+.input, 
+.textarea {
+    outline: none;
+    border: none;
+    padding: 0.8em; /* Slightly increased padding for better input field aesthetics */
+    border-radius: 12px; /* Rounded corners for input fields */
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 0 2em hsl(231, 62%, 94%);
+    font-size: 1em; /* Ensuring font size is consistent and legible */
+}
+
+.input::placeholder, 
+.textarea::placeholder {
+    color: hsl(0, 0%, 60%);
+    font-size: 1em; /* Consistent placeholder font size */
+}
+
+.textarea {
+    resize: none;
+    height: 120px; /* Increased height for better readability */
+}
+
+/* Tlačítko pro akce */
+.button {
+    padding: 1.2em; /* Slightly larger padding for better button size */
+    background: hsl(0, 0%, 0%);
+    color: hsl(0, 0%, 100%);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    font-size: 1.1em; /* Larger font size for readability */
+}
+
+.button:hover {
+    background: hsl(0, 0%, 20%);
+}
+
+/* Sekce pro zobrazení novinek */
+.description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em; /* Slightly increased gap for better separation between items */
+}
+
+.description-text {
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 0 2em hsl(231, 62%, 94%);
+    padding: 1.2em; /* Increased padding for better readability */
+    border-radius: 20px;
+    color: hsl(0, 0%, 15%);
+    font-size: 1em; /* Consistent font size for text content */
+}
+
+.spacer1 {
+    margin-top: 20px;
+}
+
+.spacer2 {
+    margin-left: 50px;
+}
+
+/* User List Section */
+.white-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em; /* Adding space above the table */
+}
+
+.white-box th, .white-box td {
+    padding: 1em; /* Increased padding for better readability */
+    text-align: left;
+    color: hsl(0, 0%, 15%);
+    font-size: 1em;
+    border-bottom: 1px solid hsl(231, 62%, 94%); /* Light border between rows */
+}
+
+.white-box th {
+    font-weight: bold;
+    background: hsl(200, 46%, 54%);
+    color: hsl(0, 0%, 100%);
+    text-transform: uppercase;
+}
+
+.white-box tr:hover {
+    background-color: hsl(231, 62%, 94%); /* Light hover effect for rows */
+}
+
+.white-box td {
+    background: hsl(213, 85%, 97%);
+    border-radius: 10px; /* Rounded corners for better aesthetics */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .white-box {
+        padding: 1.5em;
+    }
+
+    .column {
+        gap: 1em;
+    }
+
+    .heading {
+        font-size: 2em;
+    }
+
+    .sub-heading {
+        font-size: 1.3em;
+    }
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+.image-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.change-password-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.password-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+.close-modal {
+  background: #f1f1f1;
+  border: none;
+  padding: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.change-password-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: #007bff;
+  }
+
+.passwordchangestyles {
+    background: hsl(213, 85%, 97%);
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-shadow: 0 0 2em hsl(231, 62%, 94%);
+}
+
+.blacktextcolor {
+    color: black;
+}
+  
+  .password-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .close-modal {
+    background: #f1f1f1;
+    border: none;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+.spacer3 {
+    margin-bottom: 10px;
+}
+
+.spacer4 {
+    margin-top: 5px;
+}
+
+.spacer5 {
+    margin-bottom: 40px;
+}
+
+/* Alert container */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 0;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: gray;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: scaleX(0);
+    animation: stretchIn 0.5s forwards, fadeOut 4s 4s forwards;
+    white-space: nowrap; /* Prevent text wrapping */
+    flex-direction: row;
+    width: auto; /* Make width fit content */
+    max-width: 100%;
+    min-width: 50px;
+  }
+  
+  /* Animation for stretching the alert */
+  @keyframes stretchIn {
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Animation for fading out the alert */
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
+  
+  /* Small progress bar at the bottom */
+  .progress-bar {
+    height: 3px;
+    width: 100%; /* Ensure it spans the entire width */
+    background-color: lightgray;
+    margin-top: 5px;
+    overflow: hidden; /* Hide the overflowing part during animation */
+  }
+
+  .alert .progress-bar {
+    height: 3px;
+    width: 100%; /* Ensure it spans the entire width */
+    background-color: lightgray;
+    margin-top: 5px;
+    overflow: hidden; /* Hide the overflowing part during animation */
+  }
+  
+  .alert .progress-bar span {
+    display: block;
+    height: 100%;
+    background-color: #4caf50; /* Green for success */
+    width: 100%; /* Start with full width */
+    animation: progressBar 4s linear forwards; /* Animate over 4 seconds */
+  }
+  
+  @keyframes progressBar {
+    100% {
+      width: 0%; /* Animate width to 0% */
+    }
+  }
+  
+  /* Style for success alert (like icon) */
+  .alert.success {
+    background-color: white;
+  }
+  
+  .alert.success p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .alert.success .icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #4caf50; /* Green */
+  }
+  
+  /* Style for error alert (cross icon) */
+  .alert.error {
+    background-color: white;
+  }
+  
+  .alert.error p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .alert.error .icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #f44336; /* Red */
+  }
+
+  .react-datepicker {
+    font-family: Arial, sans-serif;
+  }
+
+  .calendar-container {
+    margin-top: 20px;
+  }
+  
+  .selected-date {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  .spacer6 {
+    margin-right: 7px;
+  }
+
+  .dropdown-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown-container label {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .dropdown {
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .time-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .time-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .day-label {
+    width: 70px;
+    font-size: 14px;
+    text-align: right;
+  }
+  
+  .time-input {
+    width: 90px;
+    padding: 4px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .to-label {
+    font-size: 14px;
+  }

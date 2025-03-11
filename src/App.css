@@ -27,7 +27,7 @@ a {
   }
   
   a:hover {
-    color: cyan;
+    color: rgb(190, 10, 55);
     text-decoration: underline;
   }
 
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   font-size: 2em;
-  text-align: center;
+  text-align: left;
 }
 
 h2 {

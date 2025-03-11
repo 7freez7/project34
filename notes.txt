@@ -1,0 +1,4 @@
+- Navbar a Footer redesign + responzivita
+- Pro page s oborem (hudebni, vytvarny...) redesign, to co tam bylo bych fakt nechtěl vědět co by ti na to řekl xDD
+- Pro admin page dopíči s Navbarem a Footerem
+- Admin sidebar fix position a buttny na změnit heslo a odhlásit se

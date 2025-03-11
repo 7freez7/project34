@@ -1,147 +1,129 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import MobileMenu from "./MobileMenu"; // Import MobileMenu
-import "./navbar.css";
+import Logo from "../data/logo.png";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-  const [isMobile, setIsMobile] = useState(false); // Stav pro detekci mobilního zařízení
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Funkce pro kontrolu velikosti obrazovky
+  // Toggle dropdown menu
+  const handleDropdownClick = (dropdown: string) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
+
+  // Close dropdown when clicking outside
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Pokud je šířka obrazovky <= 768px, nastaví isMobile na true
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).closest(".dropdown")) {
+        setActiveDropdown(null);
+      }
     };
-
-    checkMobile(); // Zavoláme to při prvním renderování
-    window.addEventListener("resize", checkMobile); // Přidáme event listener na změnu velikosti obrazovky
-
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      window.removeEventListener("resize", checkMobile); // Odstraníme event listener při unmountu
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
-  const handleDropdownMouseEnter = (dropdown: string) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    setActiveDropdown(dropdown);
-  };
-
-  const handleDropdownMouseLeave = () => {
-    const id = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 200); // Zpoždění 200 ms
-    setTimeoutId(id);
-  };
-
   return (
-    <div className="Link">
-      {isMobile ? ( // Pokud je zařízení mobilní, zobrazi MobileMenu
-        <MobileMenu />
-      ) : (
-        <div className="Logo">
-          <Link to="/">
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/img/logo1-tr.png`}
-              alt="logo"
-            />
-          </Link>
-        </div>
-      )}
-      {!isMobile && ( // Pokud není mobilní zařízení, zobrazi desktopové menu
-        <div className="currentLink">
-          <div
-            onMouseEnter={() => handleDropdownMouseEnter("uvod")}
-            onMouseLeave={handleDropdownMouseLeave}
-          >
-            <Link to="/">Úvod ▼</Link>
-            {activeDropdown === "uvod" && (
-              <ul className="dropdown">
-                <li>
-                  <Link to="/uvod/about">O škole</Link>
-                </li>
-                <li>
-                  <Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link>
-                </li>
-                <li>
-                  <Link to="/uvod/teachers">Učitelé</Link>
-                </li>
-                <li>
-                  <Link to="/uvod/absolventi">Absolventi</Link>
-                </li>
-                <li>
-                  <Link to="/uvod/soucasnost">Současnost</Link>
-                </li>
-              </ul>
-            )}
+    <nav className="bg-white shadow-md fixed w-full z-50 top-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link to="/">
+              <img className="h-16 w-auto" src={Logo} alt="School Logo" />
+            </Link>
           </div>
 
-          <div
-            onMouseEnter={() => handleDropdownMouseEnter("obory")}
-            onMouseLeave={handleDropdownMouseLeave}
-          >
-            <Link to="#">Obory ▼</Link>
-            {activeDropdown === "obory" && (
-              <ul className="dropdown">
-                <li>
-                  <Link to="/obory/hudebni">Hudební Obor</Link>
-                </li>
-                <li>
-                  <Link to="/obory/tanecni">Taneční Obor</Link>
-                </li>
-                <li>
-                  <Link to="/obory/vytvarni">Výtvarný Obor</Link>
-                </li>
-              </ul>
-            )}
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
 
-          <div
-            onMouseEnter={() => handleDropdownMouseEnter("galerie")}
-            onMouseLeave={handleDropdownMouseLeave}
-          >
-            <Link to="#">Galerie ▼</Link>
-            {activeDropdown === "galerie" && (
-              <ul className="dropdown">
-                <li>
-                  <Link to="/galerie/foto">Fotky</Link>
-                </li>
-                <li>
-                  <Link to="/galerie/video">Videa</Link>
-                </li>
-              </ul>
-            )}
-          </div>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            <div className="relative dropdown">
+              <button
+                onClick={() => handleDropdownClick("uvod")}
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+              >
+                Úvod
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              {activeDropdown === "uvod" && (
+                <ul className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                  <DropdownItem title="Hlavní stránka" href="/" />
+                  <DropdownItem title="Učitelé" href="/uvod/teachers" />
+                </ul>
+              )}
+            </div>
 
-          <Link to="/aktuality">Aktuality</Link>
-          <Link to="/documents">Dokumenty</Link>
-
-          <Link to="/kontakt">Kontakt</Link>
-
-          <div
-            onMouseEnter={() => handleDropdownMouseEnter("chcinazus")}
-            onMouseLeave={handleDropdownMouseLeave}
-          >
-            <Link to="/chcinazus">Chci na ZUŠ ▼</Link>
-            {activeDropdown === "chcinazus" && (
-              <ul className="dropdown">
-                <li>
-                  <Link to="/chcinazus/prihlaska">Podání Přihlášky</Link>
-                </li>
-                <li>
-                  <Link to="/chcinazus/prijimacizkouzky">Příjimací zkoušky</Link>
-                </li>
-                <li>
-                  <Link to="/chcinazus/priprava">Příprava</Link>
-                </li>
-              </ul>
-            )}
+            <NavItem title="Aktuality" href="/aktuality" />
+            <NavItem title="Dokumenty" href="/documents" />
+            <NavItem title="Elektronická Žk." href="https://klasifikace.jphsw.cz/?hash=c24cd76e1ce41366a4bbe8a49b02a028" />
+            <NavItem title="Kontakt" href="/kontakt" />
+            <NavItem title="Chci na ZUŠ" href="/chcinazus/prijmacirizeni" customClasses="bg-red-500 text-white border-2 border-red-500 hover:bg-red-600 hover:border-red-600" />
           </div>
         </div>
-      )}
-    </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-20 left-0 w-full bg-white shadow-lg">
+            <div className="flex flex-col space-y-2 p-4">
+              <MobileNavItem title="Úvod" href="#" />
+              <MobileNavItem title="Aktuality" href="/aktuality" />
+              <MobileNavItem title="Dokumenty" href="/documents" />
+              <MobileNavItem title="Elektronická Žk." href="https://klasifikace.jphsw.cz/?hash=c24cd76e1ce41366a4bbe8a49b02a028" />
+              <MobileNavItem title="Kontakt" href="/kontakt" />
+              <MobileNavItem title="Chci na ZUŠ" href="/chcinazus/prijmacirizeni" customClasses="bg-red-500 text-white" />
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+// Desktop NavItem Component
+const NavItem: React.FC<{ title: string; href: string; customClasses?: string }> = ({ title, href, customClasses = "" }) => {
+  return (
+    <Link to={href} className={`text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium ${customClasses}`}>
+      {title}
+    </Link>
+  );
+};
+
+// Dropdown Item Component
+const DropdownItem: React.FC<{ title: string; href: string }> = ({ title, href }) => {
+  return (
+    <li>
+      <Link to={href} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
+        {title}
+      </Link>
+    </li>
+  );
+};
+
+// Mobile NavItem Component
+const MobileNavItem: React.FC<{ title: string; href: string; customClasses?: string }> = ({ title, href, customClasses = "" }) => {
+  return (
+    <Link to={href} className={`block px-4 py-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 text-sm font-medium ${customClasses}`}>
+      {title}
+    </Link>
   );
 };
 

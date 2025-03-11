@@ -1,77 +1,38 @@
 import React from "react";
 import Hudba from "../../public/assets/img/Hudba.jpg";
-import teachers from "../../data/teachers";
-
 
 const Hudebni = () => {
-  const musicTeachers = teachers.filter(teacher => teacher.role === "Učitel hudebního oboru");
-
-    const getImagePath = (imageName: string) => {
-      try {
-        return require(`../../data/img.teachers/${imageName}`);
-      } catch {
-        return require("../../data/img.teachers/default.png");
-      }
-    };
-
   return (
-    <div>
-      <div className="oborImage">
-        <img src={`${process.env.PUBLIC_URL}/assets/img/Hudba.jpg`} alt="Hudba" className="img" />
-        <h1>Hudebni obor</h1>
-      </div>
-      <div className="info-container">
-      <p>Náš hudební obor nabízí rozmanitou škálu hudebních nástrojů, se kterými tě naučíme zacházet.</p>
-      <p>K výběru máme tyto nástroje:</p>
-      <ul>
-      <li>Baskřídlovka</li>
-      <li>Basová kytara</li>
-      <li>Bicí</li>
-      <li>Elektrofonická kytara</li>
-      <li>Elektronické klávesy</li>
-      <li>Housle</li>
-      <li>Klarinet</li>
-      <li>Klavír</li>
-      <li>Kytara</li>
-      <li>Příčná flétna</li>
-      <li>Zobcová flétna</li>
-      <li>Saxofon</li>
-      <li>Trubka</li>
-      <li>Violoncello</li>
-      <li>Kontrabas</li>
-      </ul>
-
-      <p>Náš obor se nezaměřuje pouze na klasickou hudební oblast, ale nabízí i možnost zpěvu.</p>
-      
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="relative rounded-lg overflow-hidden shadow-lg mb-8">
+        <img 
+          src={`${process.env.PUBLIC_URL}/assets/img/Hudba.jpg`} 
+          alt="Hudba" 
+          className="w-full h-[400px] object-cover"
+        />
+        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm p-6">
+          <h1 className="text-4xl font-bold text-gray-800">Hudební obor</h1>
+        </div>
       </div>
 
-      <div className="info-container2">
-        <h3>Pro koho je hudební obor určen?</h3>
-        <p>Přihlásit se mohou děti od 5 let do přípravného studia a děti od 7 let do základního studia. 
-          Výuka je individuální (hra na nástroj, zpěv) i kolektivní (hudební nauka, souborová, komorní a orchestrální hra a základy souhry) dle věku a zájmu studenta. 
-          Žáci mohou vystupovat na koncertech, městských slavnostech, festivalech a zúčastnit se soutěží.
+      <div className="bg-white rounded-lg shadow-md p-8">
+        <p className="text-lg text-gray-700 mb-4">
+          Náš hudební obor nabízí rozmanitou škálu hudebních nástrojů, se kterými tě naučíme zacházet.
         </p>
-      </div>
-
-      <h2 style={{textAlign:"center"}}>Učitelé vyučující hudební obor:</h2>
-
-
-      <div className="teachers-list" style={{marginBottom: "3%", padding: "0"}}>
-        {musicTeachers.map((teacher, index) => (
-          <div className="teacher-card" key={index}>
-              <img
-              src={getImagePath(teacher.image)}
-              alt={teacher.name}
-              className="teacher-photo"
-            />
-            <h2>{teacher.name}</h2>
-            <p>Pozice: {teacher.role}</p>
-            {teacher.status && <p>Status: {teacher.status}</p>}
-            {teacher.subjects && teacher.subjects.length > 0 ? (
-              <p>Obory: {teacher.subjects.join(", ")}</p>
-            ) : null}
-          <p>Email: <a href={`mailto:${teacher.email}`}>{teacher.email}</a></p></div>
-        ))}
+        <p className="text-lg font-semibold text-gray-800 mb-4">K výběru máme tyto nástroje:</p>
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            "Baskřídlovka", "Basová kytara", "Bicí", "Elektrofonická kytara",
+            "Elektronické klávesy", "Housle", "Klarinet", "Klavír", "Kytara",
+            "Příčná flétna", "Zobcová flétna", "Saxofon", "Trubka",
+            "Violoncello", "Kontrabas"
+          ].map((nastroj) => (
+            <li key={nastroj} className="flex items-center space-x-2 bg-gray-50 p-3 rounded-md hover:bg-gray-100 transition-colors">
+              <span className="text-blue-600">•</span>
+              <span className="text-gray-700">{nastroj}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

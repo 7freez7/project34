@@ -1,0 +1,527 @@
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: whitesmoke;
+  background-attachment: fixed;
+}
+
+.sidebar {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background: lightgray;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #272727;
+}
+
+.logo-image {
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar button:hover {
+  background-color: #0056b3;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.window {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Alert container */
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 0;
+  margin-right: 20px;
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: gray;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.5s forwards, slideOut 0.5s 4s forwards;
+  white-space: nowrap; /* Prevent text wrapping */
+  flex-direction: row;
+  width: auto; /* Make width fit content */
+  max-width: 100%;
+  min-width: 50px;
+}
+
+/* Animation for sliding in the alert */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for sliding out the alert */
+@keyframes slideOut {
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Small progress bar at the bottom */
+.progress-bar {
+  height: 3px;
+  width: 100%; /* Ensure it spans the entire width */
+  background-color: lightgray;
+  margin-top: 5px;
+  overflow: hidden; /* Hide the overflowing part during animation */
+}
+
+.alert .progress-bar span {
+  display: block;
+  height: 100%;
+  background-color: #4caf50; /* Green for success */
+  width: 100%; /* Start with full width */
+  animation: progressBar 4s linear forwards; /* Animate over 4 seconds */
+}
+
+@keyframes progressBar {
+  100% {
+    width: 0%; /* Animate width to 0% */
+  }
+}
+
+/* Style for success alert (like icon) */
+.alert.success {
+  background-color: white;
+}
+
+.alert.success p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.alert.success .icon {
+  margin-bottom: 3px;
+  margin-right: 10px;
+  font-size: 20px;
+  color: #4caf50; /* Green */
+}
+
+/* Style for error alert (cross icon) */
+.alert.error {
+  background-color: white;
+}
+
+.alert.error p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.alert.error .icon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #f44336; /* Red */
+}
+
+.container {
+  user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.white-box {
+  background: hsla(0, 0%, 100%, 0.692);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  gap: 2em;
+  width: 100%; /* Allowing the box to adapt to smaller screen sizes */
+  max-width: 500px; /* Setting a max-width for responsiveness */
+}
+
+
+.custom-box {
+  position: relative;
+  display: block;
+  margin: auto;
+  background: hsla(0, 0%, 100%, 0.877);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  gap: 2em;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.custom-box button {
+  position: relative;
+  display: block;
+  width: 300px;
+  background-color: black;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  border: 0;
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 1;
+  transition: 300ms;
+}
+
+.custom-box button:hover {
+  opacity: 0.5;
+}
+
+.custom-left {
+  position: left !important;
+  top: 50px !important;
+  left: 50px !important;
+}
+
+.custom-right {
+  position: absolute !important;
+  top: 80px !important;
+  right: 50px !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.custom-box h1 {
+  position: relative;
+  top: -30px;
+  width: fit-content;
+  text-align: center;
+  margin: auto;
+}
+
+.custom-table {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 650px;
+  overflow-y: scroll;
+}
+
+.custom-table::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-table::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-table::-webkit-scrollbar-thumb {
+  background: #0099ff;
+  border-radius: 25px;
+}
+
+.custom-table::-webkit-scrollbar-thumb:hover {
+  background: #0059ff;
+}
+
+.custom-modalbox {
+  background-color: rgb(233, 233, 233);
+  height: 90%;
+  width: 50%;
+  box-shadow: 0 0 20px rgb(48, 48, 48);
+  border-radius: 25px;
+  justify-content: center;
+  margin: auto;
+  position: absolute;
+}
+
+.custom-modalbox input {
+  display: block;
+  position: relative;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  width: 50%;
+  padding: 10px;
+  border: 0;
+  border-radius: 25px;
+}
+
+.custom-modalbox label {
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+  display: block;
+  position: relative;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.custom-modalbox button {
+  display: block;
+  margin: auto;
+  width: 50%;
+  background-color: black;
+  border-radius: 25px;
+  border: 0;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 30px;
+  transition: 300ms;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.custom-modalbox button:hover {
+  opacity: 0.8;
+}
+
+.custom-create {
+  background-color: rgb(0, 124, 207) !important;
+}
+
+.custom-sloupec {
+  justify-content: space-between;
+  width: 220px;
+}
+
+.custom-sloupec h2 {
+  color: black;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.custom-sloupec h2::after {
+  content: " ";
+  background-color: black;
+  width: 100%;
+  height: 2px;
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: auto;
+  opacity: 0.2;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-sloupec div {
+  background-color: rgb(209, 209, 209);
+  width: 100%;
+  border-radius: 10px;
+  height: 120px;
+}
+
+.custom-sloupec div p {
+  display: block;
+  text-align: center;
+  color: rgb(26, 26, 26);
+  position: relative;
+  top: 15px;
+}
+
+.custom-sloupec div span {
+  color: rgb(0, 110, 255);
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+  margin: auto;
+  display: block;
+  font-size: 60px;
+}
+
+
+
+/* Kontejner pro formuláře a obsah */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+/* Nadpisy */
+.heading {
+  font-size: 2.5em; /* Slightly larger for better hierarchy */
+  text-align: center;
+  color: hsl(0, 0%, 15%);
+}
+
+.sub-heading {
+  font-size: 1.5em;
+  color: hsl(0, 0%, 15%);
+  text-align: center; /* Ensuring sub-headings are centered */
+}
+
+/* Formuláře */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em; /* Adjusting gap for better spacing */
+}
+
+.label {
+  font-weight: bold;
+  color: hsl(0, 0%, 15%);
+  margin-bottom: 0.5em; /* Adding a small gap below the label */
+}
+
+.input, 
+.textarea {
+  outline: none;
+  border: none;
+  padding: 0.8em; /* Slightly increased padding for better input field aesthetics */
+  border-radius: 12px; /* Rounded corners for input fields */
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  font-size: 1em; /* Ensuring font size is consistent and legible */
+}
+
+.input::placeholder, 
+.textarea::placeholder {
+  color: hsl(0, 0%, 60%);
+  font-size: 1em; /* Consistent placeholder font size */
+}
+
+.textarea {
+  resize: none;
+  height: 120px; /* Increased height for better readability */
+}
+
+/* Tlačítko pro akce */
+.button {
+  padding: 1.2em; /* Slightly larger padding for better button size */
+  background: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-size: 1.1em; /* Larger font size for readability */
+}
+
+.button:hover {
+  background: hsl(0, 0%, 20%);
+}
+
+/* Sekce pro zobrazení novinek */
+.description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em; /* Slightly increased gap for better separation between items */
+}
+
+.description-text {
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  padding: 1.2em; /* Increased padding for better readability */
+  border-radius: 20px;
+  color: hsl(0, 0%, 15%);
+  font-size: 1em; /* Consistent font size for text content */
+}
+
+.white-box table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em; /* Adding space above the table */
+}
+
+.white-box th, .white-box td {
+  padding: 1em; /* Increased padding for better readability */
+  text-align: left;
+  color: hsl(0, 0%, 15%);
+  font-size: 1em;
+  border-bottom: 1px solid hsl(231, 62%, 94%); /* Light border between rows */
+}
+
+.white-box th {
+  font-weight: bold;
+  background: hsl(200, 46%, 54%);
+  color: hsl(0, 0%, 100%);
+  text-transform: uppercase;
+}
+
+.white-box tr:hover {
+  background-color: hsl(231, 62%, 94%); /* Light hover effect for rows */
+}
+
+.white-box td {
+  background: hsl(213, 85%, 97%);
+  border-radius: 10px; /* Rounded corners for better aesthetics */
+}
+
+.change-password-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.change-password-link span {
+  color: black;
+}
+
+.password-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-box {
+  background: hsla(0, 0%, 100%);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  gap: 2em;
+  width: 100%;
+  max-width: 500px;
+  margin-left: 200px;
+}
+
+.obor {
+  margin-left: 70px;
+}

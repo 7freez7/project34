@@ -1,79 +1,205 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 interface DateSlot {
   date: string;
   location: string;
-  times: string[]; // Očekáváme pole časů jako řetězce
+  times: string[];
+}
+
+interface Data {
+  tDates: string[];
+  tTimes: string[][]; 
+  tCities: string[];
+  vDates: string[];
+  vTimes: string[][]; 
+  vCities: string[];
+  hDates: string[];
+  hTimes: string[][]; 
+  hCities: string[];
 }
 
 const Prihlaska = () => {
-  const [isAdmissionOpen, setIsAdmissionOpen] = useState<boolean>(false);
-  const [selectedField, setSelectedField] = useState<string>("");
+  const [primackyProbiha, setPrimackyProbiha] = useState(false);
+  const [selectedField, setSelectedField] = useState<string>(""); 
   const [availableDates, setAvailableDates] = useState<DateSlot[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ jmeno: "", datumNarozeni: "", rodicTel: "", obor: "", schuzka: "" });
+  const [tData, setTData] = useState<{ tDates: string[], tTimes: string[][], tCities: string[] } | null>(null);
+  const [vData, setVData] = useState<{ vDates: string[], vTimes: string[][], vCities: string[] } | null>(null);
+  const [hData, setHData] = useState<{ hDates: string[], hTimes: string[][], hCities: string[] } | null>(null);
+  const [formData, setFormData] = useState({
+    jmeno: "",
+    datumNarozeni: "",
+    rodicTel: "",
+    emailRodic: "",
+    obor: "",
+    schuzka: "",
+  });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/admission-status")
-      .then((res) => {
-        setIsAdmissionOpen(res.data.isOpen);
-      })
-      .catch((error) => {
+    // Check if admission is open
+    (async () => {
+      try {
+        const response = await fetch("https://preview.zushm.cz/api/prihlasky/valid");
+        const data = await response.json();
+        if (data.message === "Primacky probihaji") {
+          setPrimackyProbiha(true);
+        }
+      } catch (error) {
         console.error("Error fetching admission status:", error);
-      });
+      }
+    })();
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/prihlasky/tdata")
-      .then((res) => {
-        const dates: DateSlot[] = Object.entries(res.data).map(([date, value]) => {
-          const [location, timesString] = (value as string).split(",[");
-          const times = timesString.replace("]", "").split(" ").map((t) => t.split(";")[0]);
-          return { date, location, times };
+    // Fetch tdata
+    fetch('https://preview.zushm.cz/api/prihlasky/tdata')
+      .then(response => response.json())
+      .then(data => {
+        const tDates: string[] = [];
+        const tTimes: string[][] = [];
+        const tCities: string[] = [];
+
+        Object.keys(data).forEach(date => {
+          const [time1, time2, city] = data[date].split(",");
+          tDates.push(date);
+          tTimes.push([time1, time2]);
+          tCities.push(city);
         });
-        setAvailableDates(dates);
+
+        setTData({ tDates, tTimes, tCities });
       })
-      .catch((error) => {
-        console.error("Error fetching available dates:", error);
-      });
+      .catch(error => console.error('Error fetching tdata:', error));
+
+    // Fetch vdata
+    fetch('https://preview.zushm.cz/api/prihlasky/vdata')
+      .then(response => response.json())
+      .then(data => {
+        const vDates: string[] = [];
+        const vTimes: string[][] = [];
+        const vCities: string[] = [];
+
+        Object.keys(data).forEach(date => {
+          const [time1, time2, city] = data[date].split(",");
+          vDates.push(date);
+          vTimes.push([time1, time2]);
+          vCities.push(city);
+        });
+
+        setVData({ vDates, vTimes, vCities });
+      })
+      .catch(error => console.error('Error fetching vdata:', error));
+
+    // Fetch hdata
+    fetch('https://preview.zushm.cz/api/prihlasky/hdata')
+      .then(response => response.json())
+      .then(data => {
+        const hDates: string[] = [];
+        const hTimes: string[][] = [];
+        const hCities: string[] = [];
+
+        Object.keys(data).forEach(date => {
+          const [time1, time2, city] = data[date].split(",");
+          hDates.push(date);
+          hTimes.push([time1, time2]);
+          hCities.push(city);
+        });
+
+        setHData({ hDates, hTimes, hCities });
+      })
+      .catch(error => console.error('Error fetching hdata:', error));
   }, []);
 
   const handleDateSelect = (date: string) => {
     setSelectedDate(date);
-    const selectedDateData = availableDates.find(d => d.date === date);
+    const selectedDateData = availableDates.find((d) => d.date === date);
     if (selectedDateData) {
       setSelectedLocation(selectedDateData.location);
     }
+    console.log("Selected Date:", date); // Log selected date
+  };
+
+  const handleTimeSelect = (time: string) => {
+    setSelectedTime(time);
+    console.log("Selected Time:", time); // Log selected time
   };
 
   const handleSubmit = () => {
-    if (!selectedDate || !selectedTime || !selectedLocation) {
-      alert("Vyberte datum, čas a město.");
-      return;
+    return;
+  };
+
+  const renderData = () => {
+    if (selectedField === 'TANECNI' && tData) {
+      return (
+        <div>
+          {tData.tDates.map((date, index) => (
+            <div key={date}>
+              <h3>{date}</h3>
+              {tData.tTimes[index].map((time) => (
+                <button
+                  key={time}
+                  onClick={() => handleTimeSelect(time)} // Call handleTimeSelect
+                  className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      );
     }
 
-    const reservationData = {
-      ...formData,
-      obor: selectedField,
-      schuzka: `${selectedDate} ${selectedTime} ${selectedLocation}`,
-    };
+    if (selectedField === 'HUDEBNI' && vData) {
+      return (
+        <div>
+          {vData.vDates.map((date, index) => (
+            <div key={date}>
+              <h3>{date}</h3>
+              {vData.vTimes[index].map((time) => (
+                <button
+                  key={time}
+                  onClick={() => handleTimeSelect(time)} // Call handleTimeSelect
+                  className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      );
+    }
 
-    axios.post("http://localhost:5000/api/submit-reservation", reservationData)
-      .then(() => {
-        alert("Rezervace úspěšně odeslána!");
-      })
-      .catch((error) => {
-        console.error("Error submitting reservation:", error);
-      });
+    if (selectedField === 'VYTVARNY' && hData) {
+      return (
+        <div>
+          {hData.hDates.map((date, index) => (
+            <div key={date}>
+              <h3>{date}</h3>
+              {hData.hTimes[index].map((time) => (
+                <button
+                  key={time}
+                  onClick={() => handleTimeSelect(time)} // Call handleTimeSelect
+                  className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return null;
   };
 
   return (
     <div className="prihlaska-container">
       <h1>Přihláška</h1>
-      {isAdmissionOpen ? (
+      {primackyProbiha ? (
         <div className="form-container">
           <h2>Možnost rezervovat schůzku</h2>
           <label>Vyberte obor:</label>
@@ -83,38 +209,11 @@ const Prihlaska = () => {
             <option value="HUDEBNI">Hudební</option>
             <option value="VYTVARNY">Výtvarný</option>
           </select>
-          {availableDates.length > 0 && (
-            <div className="date-time-container">
-              <h3>Vyberte datum a čas:</h3>
-              <select onChange={(e) => handleDateSelect(e.target.value)} className="date-picker">
-                <option value="">-- Vyberte datum --</option>
-                {availableDates.map((date) => (
-                  <option key={date.date} value={date.date}>{date.date} ({date.location})</option>
-                ))}
-              </select>
-              {selectedDate && (
-                <div className="time-buttons">
-                  <h4>{selectedDate} - {selectedLocation}</h4>
-                  {availableDates
-                    .find((date) => date.date === selectedDate)
-                    ?.times.map((time) => {
-                      if (typeof time === "string") { // Ujistíme se, že time je string
-                        return (
-                          <button
-                            key={time}
-                            onClick={() => setSelectedTime(time)}
-                            className={`time-button ${selectedTime === time ? 'selected-time-button' : ''}`}
-                          >
-                            {time}
-                          </button>
-                        );
-                      }
-                      return null; // Pokud 'time' není string, nebudeme jej vykreslovat
-                    })}
-                </div>
-              )}
-            </div>
-          )}
+
+          <div>
+            {renderData()}
+          </div>
+
           <h3>Vaše údaje:</h3>
           <p>Jméno</p>
           <input
@@ -132,18 +231,27 @@ const Prihlaska = () => {
             onChange={(e) => setFormData({ ...formData, datumNarozeni: e.target.value })}
             className="input-field"
           />
-          <p>Telefon rodiče</p>
+          <p>Zákonný zástupce</p>
           <input
             type="text"
-            placeholder="Telefon rodiče"
+            placeholder="Telefon"
             value={formData.rodicTel}
             onChange={(e) => setFormData({ ...formData, rodicTel: e.target.value })}
             className="input-field"
           />
-          <button onClick={handleSubmit} className="submit-button">Odeslat přihlášku</button>
+          <input
+            type="text"
+            placeholder="Email"
+            value={formData.rodicTel}
+            onChange={(e) => setFormData({ ...formData, emailRodic: e.target.value })}
+            className="input-field"
+          />
+          <button onClick={handleSubmit} className="submit-button">
+            Odeslat přihlášku
+          </button>
         </div>
       ) : (
-        <p>Přijímací řízení momentálně neprobíhá.</p>
+        <h1>Primacky neprobihaji</h1>
       )}
     </div>
   );

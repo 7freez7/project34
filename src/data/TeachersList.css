@@ -1,3 +1,4 @@
+/* Main teacher list styles */
 .teachers-list {
   display: flex;
   flex-wrap: wrap;
@@ -6,30 +7,64 @@
   padding-bottom: 4%;
 }
 
+/* Teacher card styling */
 .teacher-card {
-  width: 20%; /* Nastavte šířku podle potřeby */
-  /*border: 1px solid rgb(0, 0, 0); /* Původní barva okraje */
+  width: 20%; /* Adjust width as needed */
+  border: 1px solid rgb(0, 0, 0); /* Original border color */
   border-radius: 8px;
   padding: 12px;
   margin: 12px;
   text-align: left;
-  transition: border-color 0.3s ease, transform 0.3s ease; /* Přidání přechodu pro hladký efekt */
+  transition: border-color 0.3s ease, transform 0.3s ease; /* Transition effects */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: flex-start; /* Align content at the top of the card */
 }
 
-/* Styl pro obrázek učitele */
-.teacher-photo {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 8px;
+/* Hover effects for specific teacher types */
+.teacher-card.učitel-hudebního-oboru:hover {
+  border-color: rgba(0, 0, 255, 1); /* Blue border for music teachers */
+  transform: scale(1.05); /* Slightly scale up the card */
 }
 
+.teacher-card.učitel-výtvarného-oboru:hover {
+  border-color: rgba(0, 255, 0, 1); /* Green border for art teachers */
+  transform: scale(1.05); /* Slightly scale up the card */
+}
 
+.teacher-card.učitel-tanečního-oboru:hover {
+  border-color: rgba(255, 0, 0, 1); /* Red border for dance teachers */
+  transform: scale(1.05); /* Slightly scale up the card */
+}
+
+.teacher-card.administrativní-pracovník:hover {
+  border-color: rgb(255, 0, 179); /* Red border for dance teachers */
+  transform: scale(1.05);
+}
+
+/* Initial transparent borders for different teacher types */
+.teacher-card.učitel-hudebního-oboru {
+  border-color: rgba(0, 0, 255, 0); /* Transparent border */
+}
+
+.teacher-card.učitel-výtvarného-oboru {
+  border-color: rgba(0, 255, 0, 0); /* Transparent border */
+}
+
+.teacher-card.učitel-tanečního-oboru {
+  border-color: rgba(255, 0, 0, 0); /* Transparent border */
+}
+
+.teacher-card.administrativní-pracovník {
+  border-color: rgba(255, 0, 0, 0); /* Transparent border */
+}
+
+/* Filters button styling */
 .filters {
-  display: flex; /* Zarovnání tlačítek vedle sebe */
-  gap: 10px; /* Mezera mezi tlačítky */
-  justify-content: center; /* Zarovnání na střed */
+  display: flex; /* Align buttons next to each other */
+  gap: 10px; /* Space between buttons */
+  justify-content: center; /* Center buttons horizontally */
   align-items: center;
 }
 
@@ -48,35 +83,145 @@
   color: white;
 }
 
+/* Active filter button styling */
 .filters .active {
-  background-color: #ffffff; /* Aktivní tlačítko */
+  background-color: #ffffff; /* White background for active button */
   color: black;
   font-weight: bold;
 }
 
+/* Popup overlay styling */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup styling */
+.popup {
+  display: flex; /* Use flex to arrange elements side by side */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 900px; /* Adjust width as needed */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  justify-content: space-between; /* Spread out the content */
+}
+
+.popup .popup-left, .popup .popup-right {
+  width: 48%; /* Set width for the two sections */
+}
+
+.popup-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-right {
+  padding-left: 20px;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Styling for the teacher's photo in the popup */
+.teacher-popup-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 10px; /* Center image in the popup */
+}
+
+/* Styling for the životopis (biography) section */
+.zivotopis-card {
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.zivotopis-card p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Teacher photo styling for cards */
+.teacher-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px; /* Space between image and text */
+}
+
+/* Responsiveness for smaller screens */
 @media (max-width: 768px) {
-  .teachers-list {
-    width: 100%;
-    display: block; /* Zabrání flexboxu ovlivňovat šířku */
-  }
-
   .teacher-card {
-    width: 100% !important;
-    max-width: 100vw; /* Zajistí, že se nebude přetahovat přes viewport */
-    margin: 0;
-    padding: 12px;
-    box-sizing: border-box;
-    overflow: hidden; /* Pokud by se něco přetahovalo */
+    width: 45%; /* Adjust to 45% width on smaller screens */
   }
 
-  body, html {
-    overflow-x: hidden; /* Zabrání horizontálnímu posunu */
-    width: 100%;
+  .popup {
+    flex-direction: column; /* Stack content vertically in the popup */
+    max-width: 90%;
   }
 
-  .teacher-photo {
-    width: 50%;
-    display: block;  /* Převod na blokový prvek */
-    margin: 0 auto;  /* Zarovnání na střed */
+  .popup-left, .popup-right {
+    width: 100%; /* Make both sections 100% width on smaller screens */
   }
+}
+
+@media (max-width: 480px) {
+  .teacher-card {
+    width: 90%; /* Adjust to 90% width on very small screens */
+  }
+}
+
+/* Popup styling */
+.popup {
+  display: flex; /* Use flex to arrange elements side by side */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1100px; /* Increased max-width for a wider popup */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  justify-content: flex-start; /* Align content to the left */
+}
+
+.popup .popup-left, .popup .popup-right {
+  width: 48%; /* Set width for the two sections */
+}
+
+.popup-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%; /* Make the left section even wider */
+}
+
+.popup-right {
+  padding-left: 20px;
+  width: 30%; /* Adjust right section width accordingly */
+}
+
+/* Optional: Adjust button margins and spacing to match the new width */
+.popup button {
+  margin-top: 10px;
+  margin-left: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
 }

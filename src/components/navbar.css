@@ -3,7 +3,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(180deg, #222831 0%, white 100%);
     padding: 20px 0; /* Vertikální padding */
     display: flex;
     align-items: center; /* Vertikální zarovnání */
@@ -65,11 +64,10 @@ body {
     left: 50%; /* Vycentrování dropdownu */
     transform: translateX(-50%); /* Perfektní vycentrování */
     background-color: white;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); /* Tmavý stín */
+    border: 1px solid #ccc;
     z-index: 1000;
     width: max-content; /* Přizpůsobí šířku obsahu */
-    padding: 2px 0;
-    border-radius: 20px;
+    padding: 5px 0;
 }
 
 .dropdown li {
@@ -96,5 +94,3 @@ body {
 .currentLink > div:hover .dropdown {
     display: block;
 }
-
-

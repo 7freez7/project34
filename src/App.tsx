@@ -1,5 +1,4 @@
-import React, { useEffect } from "react"; 
-import { useLocation } from "react-router-dom"; 
+import React from "react";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
@@ -24,72 +23,95 @@ import Tanecni from "./pages/obory/Tanecni";
 import Vytvarni from "./pages/obory/Vytvarni";
 
 import Absolventi from "./pages/uvod/Absolventi";
-import OSkole from "./pages/uvod/OSkole";
+import Historie from "./pages/uvod/Historie";
 import Pracoviste from "./pages/uvod/Pracoviste";
+import Soucasnost from "./pages/uvod/Soucasnost";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
 import TeachersList from "./data/TeachersList";
 
-import Aktuality from "./components/Aktuality";
-import { AuthProvider } from "./context/AuthContext";
-
-import NotFound from "./NotFound";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Outlet,
+  useLocation,
 } from "react-router-dom";
-
-// ScrollToTop component that scrolls to the top on route change
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top
-  }, [pathname]); // Re-run on pathname change
-
-  return null;
+import AdminLogin from "./pages/admin/adminlogin";
+import PrijmaciRizeniPage from "./pages/prijmaciRizeni/prijmaci-rizeni";
+import NotFound from "./pages/404";
+import { AdmissionList } from "./pages/prijmaciRizeni/export";
+import { Newspaper } from "lucide-react";
+import AktualityContainer from "./pages/Aktuality";
+import NewsItemPage from "./components/newsID";
+import NovinkyPage from "./pages/admin/NovinkyPage";
+import Dashboard from "./pages/admin/dashboard";
+import PrijimaciRizeniPage from "./pages/admin/PrijimaciRizeniPage";
+import ExportPrijPage from "./pages/admin/ExportPrijPage";
+import ZamestnanciPage from "./pages/admin/ZamestnanciPage";
+import UzivatelePage from "./pages/admin/UzivatelePage";
+import ProtectedRoute from "./lib/ProtectedRoutes";
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
 }
 
-const App: React.FC = () => {
+function AppContent() {
+  const location = useLocation();
+  const isAdminPage = location.pathname.includes('/adminlogin') || location.pathname === '/newdash' || location.pathname === '/prijmacirizeni';
+  const dashboard = location.pathname.includes('/dashboard') || location.pathname === '/dashboard/novinky';
+  const isPrijmacky = location.pathname.includes('/chcinazus/prijmacirizeni');
+  const news = location.pathname.includes('/news/');
+
   return (
     <div className="App">
-      <Router>
-        <ScrollToTop /> {/* Place this here to trigger on route changes */}
-        <AuthProvider>
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<Uvod />} />
-              <Route path="/kontakt" element={<Kontakt />} />
-              <Route path="/obory" element={<Obory />} />
-              <Route path="/galerie" element={<Galerie />} />
-              <Route path="/documents" element={<Documents />} />
-              <Route path="/chcinazus" element={<ChciNaZus />} />
+        {!isAdminPage && !news && !dashboard && <Navbar />}
+        <main>
+          <Routes>
+            <Route path="/" element={<Uvod />} />
+            <Route path="/kontakt" element={<Kontakt />} />
+            <Route path="/obory" element={<Obory />} />
+            <Route path="/galerie" element={<Galerie />} />
+            <Route path="/documents" element={<Documents />} />
+            <Route path="/chcinazus" element={<ChciNaZus />} />
 
-              <Route path="chcinazus/prihlaska" element={<Prihlaska />} />
-              <Route path="chcinazus/prijmacky" element={<Prijmacky />} />
-              <Route path="chcinazus/priprava" element={<Priprava />} />
+            <Route path="chcinazus/prihlaska" element={<Prihlaska />} />
+            <Route path="chcinazus/prijmacky" element={<Prijmacky />} />
+            <Route path="chcinazus/priprava" element={<Priprava />} />
+            <Route path="chcinazus/prijmacirizeni" element={<PrijmaciRizeniPage />} />
 
-              <Route path="/galerie/foto" element={<Foto />} />
-              <Route path="/galerie/video" element={<Video />} />
+            <Route path="/galerie/foto" element={<Foto />} />
+            <Route path="/galerie/video" element={<Video />} />
 
-              <Route path="/obory/hudebni" element={<Hudebni />} />
-              <Route path="/obory/tanecni" element={<Tanecni />} />
-              <Route path="/obory/vytvarni" element={<Vytvarni />} />
+            <Route path="/obory/hudebni" element={<Hudebni />} />
+            <Route path="/obory/tanecni" element={<Tanecni />} />
+            <Route path="/obory/vytvarni" element={<Vytvarni />} />
 
-              <Route path="/uvod/absolventi" element={<Absolventi />} />
-              <Route path="/uvod/about" element={<OSkole />} />
-              <Route path="/uvod/pracoviste" element={<Pracoviste />} />
-              <Route path="/uvod/teachers" element={<TeachersList />} />
+            <Route path="/uvod/absolventi" element={<Absolventi />} />
+            <Route path="/uvod/historie" element={<Historie />} />
+            <Route path="/uvod/pracoviste" element={<Pracoviste />} />
+            <Route path="/uvod/soucasnost" element={<Soucasnost />} />
+            <Route path="/uvod/teachers" element={<TeachersList />} />
 
-              <Route path="/aktuality" element={<Aktuality />} />
+            <Route path="/aktuality" element={<AktualityContainer />} />
+            <Route path="/aktuality/:id" element={<NewsItemPage />} />
+            <Route path="/404" element={<NotFound/>}/>
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </AuthProvider>
-      </Router>
+            <Route path="/adminlogin" element={<AdminLogin />} />
+            <Route path="/prijmacirizeni" element={<AdmissionList />} />
+            <Route path="*" element={<NotFound />} />
+
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+            <Route path="/dashboard/prijimacirizeni" element={<ProtectedRoute><PrijimaciRizeniPage /></ProtectedRoute>}/>
+            <Route path="/dashboard/prijimacirizeniexport" element={<ProtectedRoute><ExportPrijPage /></ProtectedRoute>}/>
+            <Route path="/dashboard/zamestnanci" element={<ProtectedRoute><ZamestnanciPage /></ProtectedRoute>}/>
+            <Route path="/dashboard/novinky" element={<ProtectedRoute><NovinkyPage /></ProtectedRoute>}/>
+            <Route path="/dashboard/uzivatele" element={<ProtectedRoute><UzivatelePage /></ProtectedRoute>}/>
+          </Routes>
+        </main>
+        {!isAdminPage && !isPrijmacky && !news && !dashboard && <Footer />}
     </div>
   );
 }
