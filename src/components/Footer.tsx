@@ -27,10 +27,10 @@ function Footer() {
               <p>Jarkovského 47, 538 03 Heřmanův Městec</p>
             </a>
           </h4>
-          <h4>Telefon: </h4>
-          <p>739 411 282 | 469 696 291</p>
-          <h4>Email: </h4>
-          <p>reditel@zushm.cz</p>
+          <h4>Telefon:</h4>
+          <p>123 456 678 | 469 696 691</p>
+          <h4>Email:</h4>
+          <p>email@gmail.cz</p>
           <h4>Pracovní doba: </h4>
           <p>Po - Pá 09:00 - 17:00</p>
         </div>

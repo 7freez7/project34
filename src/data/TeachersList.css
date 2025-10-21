@@ -25,7 +25,6 @@
   margin-bottom: 8px;
 }
 
-
 .filters {
   display: flex; /* Zarovnání tlačítek vedle sebe */
   gap: 10px; /* Mezera mezi tlačítky */

@@ -21,6 +21,7 @@
 .Logo img {
     height: 55px; /* Velikost obrázku */
     padding: 0;
+    
 }
 
 .currentLink {
@@ -70,6 +71,11 @@ body {
     width: max-content; /* Přizpůsobí šířku obsahu */
     padding: 2px 0;
     border-radius: 20px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown li {
