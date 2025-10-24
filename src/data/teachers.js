@@ -130,74 +130,8 @@ const teachers = [
     role: "Učitel tanečního oboru",
     email: "t.hluchnikova@zushm.cz",
     image: "defaultRed.png"
-  },
-  // ABSOLVENTI
-  {
-    name: "Kateřina Šťastná",
-    role: "Absolvent",
-    instrument: "klavír",
-    image: "default.jpg"
-  },
-  {
-    name: "Jan Novák",
-    role: "Absolvent",
-    instrument: "housle",
-    image: "default.jpg"
-  },
-  {
-    name: "Tereza Malá",
-    role: "Absolvent",
-    instrument: "flétna",
-    image: "default.jpg"
-  },
-  {
-    name: "Petr Svoboda",
-    role: "Absolvent",
-    instrument: "kytara",
-    image: "default.jpg"
-  },
-  {
-    name: "Lucie Dvořáková",
-    role: "Absolvent",
-    instrument: "violoncello",
-    image: "default.jpg"
-  },
-  {
-    name: "Martin Král",
-    role: "Absolvent",
-    instrument: "klarinet",
-    image: "default.jpg"
-  },
-  {
-    name: "Anna Veselá",
-    role: "Absolvent",
-    instrument: "saxofon",
-    image: "default.jpg"
-  },
-  {
-    name: "Jakub Němec",
-    role: "Absolvent",
-    instrument: "trubka",
-    image: "default.jpg"
-  },
-  {
-    name: "Barbora Horáková",
-    role: "Absolvent",
-    instrument: "bicí",
-    image: "default.jpg"
-  },
-  {
-    name: "David Černý",
-    role: "Absolvent",
-    instrument: "varhany",
-    image: "default.jpg"
-  },
-  {
-    name: "Eliška Marešová",
-    role: "Absolvent",
-    instrument: "zpěv",
-    image: "default.jpg"
   }
 ];
 
 export default teachers;
+  

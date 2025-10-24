@@ -24,7 +24,7 @@ function Footer() {
               target="_blank"
               style={{ color: "#f0f0f0" }}
             >
-              <p>Jarkovského 47, 538 03 Heřmanův Městec</p>
+              <p>Palackého 67, 538 03 Praha</p>
             </a>
           </h4>
           <h4>Telefon:</h4>

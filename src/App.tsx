@@ -23,7 +23,6 @@ import Hudebni from "./pages/obory/Hudebni";
 import Tanecni from "./pages/obory/Tanecni";
 import Vytvarni from "./pages/obory/Vytvarni";
 
-import Absolventi from "./pages/uvod/Absolventi";
 import OSkole from "./pages/uvod/OSkole";
 import Pracoviste from "./pages/uvod/Pracoviste";
 import Zamestnanci from "./pages/uvod/Zamestnanci";
@@ -31,6 +30,13 @@ import TeachersList from "./data/TeachersList";
 
 import Aktuality from "./components/Aktuality";
 import { AuthProvider } from "./context/AuthContext";
+
+import ProtectedRoute from '../src/routes/ProtectedRoute';
+import AdminLogin from './admin/pages/AdminLogin';
+import AdminLayout from './admin/pages/AdminLayout';
+import Dashboard from './admin/pages/AdminDashboard';
+import ManageNews from './admin/pages/ManageNews';
+import ManageContent from './admin/pages/ManageContext';
 
 import NotFound from "./NotFound";
 import {
@@ -77,7 +83,6 @@ const App: React.FC = () => {
               <Route path="/obory/tanecni" element={<Tanecni />} />
               <Route path="/obory/vytvarni" element={<Vytvarni />} />
 
-              <Route path="/uvod/absolventi" element={<Absolventi />} />
               <Route path="/uvod/about" element={<OSkole />} />
               <Route path="/uvod/pracoviste" element={<Pracoviste />} />
               <Route path="/uvod/teachers" element={<TeachersList />} />
@@ -87,6 +92,14 @@ const App: React.FC = () => {
               */}
 
               <Route path="*" element={<NotFound />} />
+
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+                <Route index element={<Dashboard />} />
+                <Route path="aktuality" element={<ManageNews />} />
+                <Route path="content" element={<ManageContent />} />
+              </Route>
+
             </Routes>
           </main>
           <Footer />

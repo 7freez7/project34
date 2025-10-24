@@ -127,15 +127,25 @@ a {
   flex-wrap: wrap; /* Umožní kontejnerům se přizpůsobit */
   justify-content: space-between; /* Umožní prostor mezi kontejnery */
   padding: 2%;
+  position: relative;        /* umožní překryv nad předchozí sekcí */
+  margin-top: -10%;         /* posune obory nahoru, aby zasahovaly do .MainImage */
+  z-index: 5;                /* zajistí, že obory budou nad obrázkem */
+  gap: 20px;                 /* mezera mezi položkami */
 }
+
 .obor-druh {
-  width: 30%; /* Můžete zmenšit šířku, aby se vešly lépe */
+  width: 31%; /* Můžete zmenšit šířku, aby se vešly lépe */
+  height: auto;
   position: relative; /* Přidáno pro relativní umístění */
   text-align: center; /* Zarovná text na střed */
   padding-bottom: 2%;
   background: #e8e8e8;
   border-radius:25px ;
   overflow: hidden; /* Zajistí, že obrázek nepřečnívá */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(0); /* výchozí, lze změnit pro jemné posuny */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 6; /* zajistí, že jednotlivé karty budou nad obor-container/bg */
 }
 
 .obor-druh p {

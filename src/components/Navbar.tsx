@@ -55,7 +55,6 @@ const Navbar = () => {
                 <li><Link to="/uvod/about">O škole</Link></li>
                 <li><Link to="/uvod/pracoviste">Místa výuky – pracoviště</Link></li>
                 <li><Link to="/uvod/teachers">Učitelé</Link></li>
-                <li><Link to="/uvod/absolventi">Absolventi</Link></li>
                 <li><Link to="/uvod/soucasnost">Současnost</Link></li>
               </ul>
             )}
